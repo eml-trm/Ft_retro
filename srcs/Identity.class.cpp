@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 18:49:25 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/20 19:21:12 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/20 22:38:16 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,14 @@ int					Identity::getY(void) const {
 
 
 /*------------------ Seter -----------------*/
-
-
+void				Identity::setX(int X) {
+	this->_X = X;
+	return ;
+}
+void				Identity::setY(int Y) {
+	this->_Y = Y;
+	return ;
+}
 
 
 /*------------------ Other -----------------*/

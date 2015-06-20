@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 16:14:17 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/20 19:10:29 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/20 19:58:36 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "PetitWeapon.class.hpp"
 
 /*-------------- Constructors -------------*/
-PetitMechant::PetitMechant(int X, int Y) : Enemy("Petit Mechant", X, Y) {
+PetitMechant::PetitMechant(int X, int Y) : Enemy("Petit Mechant", X, Y, 5, 100) {
 	AWeapon		*petit = new PetitWeapon(X, Y);
 
 	this->_weapon = petit;
@@ -35,8 +35,6 @@ PetitMechant::~PetitMechant(void) {
 
 
 /*------------------ Geter -----------------*/
-
-
 
 
 /*------------------ Seter -----------------*/

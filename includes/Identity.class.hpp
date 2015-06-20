@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 18:48:11 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/20 19:20:40 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/20 22:37:10 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ class	Identity
 
 		int			getX(void) const;
 		int			getY(void) const;
+
+		void		setX(int X);
+		void		setY(int Y);
 		std::string	getType(void) const;
 
 	private:

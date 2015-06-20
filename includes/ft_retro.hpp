@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 19:38:15 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/20 19:41:23 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/20 19:42:25 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <iostream>
 
+#include <curses.h>
 #include "AShip.class.hpp"
 #include "AWeapon.class.hpp"
 #include "Character.class.hpp"

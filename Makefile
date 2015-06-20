@@ -6,7 +6,7 @@
 #    By: bsautron <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/06/16 11:13:38 by bsautron          #+#    #+#              #
-#    Updated: 2015/06/20 19:41:07 by bsautron         ###   ########.fr        #
+#    Updated: 2015/06/20 19:42:51 by bsautron         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ OBJ_DIR = .obj/ \
 all: dor $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) -o $@ $^
+	@$(CC) -o $@ $^ -lncurses
 	@echo "\033[32mReady!\033[0m"
 
 dor:

@@ -1,36 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Enemy.class.hpp                                    :+:      :+:    :+:   */
+/*   PetitMechant.class.hpp                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/20 15:56:14 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/20 16:08:51 by bsautron         ###   ########.fr       */
+/*   Created: 2015/06/20 16:13:10 by bsautron          #+#    #+#             */
+/*   Updated: 2015/06/20 16:20:51 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENEMY_CLASS_HPP 
-# define ENEMY_CLASS_HPP
+#ifndef PETITMECHANT_CLASS_HPP 
+# define PETITMECHANT_CLASS_HPP
 
 # include <iostream>
-# include "AShip.class.hpp"
+# include "Enemy.class.hpp"
 
-class	Enemy : public AShip
+class	PetitMechant : public Enemy
 {
 	public:
-		Enemy(std::string type, int X, int Y);		
-		virtual ~Enemy(void);
-
+		PetitMechant(int X, int Y);
+		~PetitMechant(void);
 
 	private:
-		Enemy(void);
-		Enemy(Enemy const & src);
+		PetitMechant(void);
+		PetitMechant(PetitMechant const & src);
 
-		Enemy		& operator=(Enemy const & right);
+		PetitMechant		& operator=(PetitMechant const & right);
 
-	protected:
-		int			_HP;
 };
 
 #endif

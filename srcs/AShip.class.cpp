@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Enemy.class.cpp                                    :+:      :+:    :+:   */
+/*   AShip.class.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/20 15:58:37 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/20 16:12:18 by bsautron         ###   ########.fr       */
+/*   Created: 2015/06/20 15:13:02 by bsautron          #+#    #+#             */
+/*   Updated: 2015/06/20 16:12:24 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Enemy.class.hpp"
 #include "AShip.class.hpp"
 
 /*-------------- Constructors -------------*/
-Enemy::Enemy(std::string type, int X, int Y) : AShip(type, X, Y) {
-	std::cout << "Enemy(" << this->_type << "): popped at " << this->_X << "/" << this->_Y << std::endl;
+AShip::AShip(std::string type, int X, int Y) : _type(type), _X(X), _Y(Y) {
+	//std::cout << "AShip: Default constructor" << std::endl;
 	return ;
 }
 
 
 /*--------------- Destructors --------------*/
-Enemy::~Enemy(void) {
-	std::cout << "Enemy: Destructor" << std::endl;
+AShip::~AShip(void) {
+	//std::cout << "AShip: Destructor" << std::endl;
 	return ;
 }
 
@@ -31,8 +30,9 @@ Enemy::~Enemy(void) {
 
 
 /*------------------ Geter -----------------*/
-
-
+std::string			AShip::getType(void) const {
+	return (this->_type);
+}
 
 
 /*------------------ Seter -----------------*/

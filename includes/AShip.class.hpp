@@ -1,36 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Enemy.class.hpp                                    :+:      :+:    :+:   */
+/*   AShip.class.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/20 15:56:14 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/20 16:08:51 by bsautron         ###   ########.fr       */
+/*   Created: 2015/06/20 15:13:17 by bsautron          #+#    #+#             */
+/*   Updated: 2015/06/20 16:09:21 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENEMY_CLASS_HPP 
-# define ENEMY_CLASS_HPP
+#ifndef ASHIP_CLASS_HPP 
+# define ASHIP_CLASS_HPP
 
 # include <iostream>
-# include "AShip.class.hpp"
 
-class	Enemy : public AShip
+class	AShip
 {
 	public:
-		Enemy(std::string type, int X, int Y);		
-		virtual ~Enemy(void);
+		AShip(std::string type, int X, int Y);
+		virtual ~AShip(void);
+
+		std::string		getType(void) const;
 
 
 	private:
-		Enemy(void);
-		Enemy(Enemy const & src);
+		AShip(void);
+		AShip(AShip const & src);
 
-		Enemy		& operator=(Enemy const & right);
+		AShip		& operator=(AShip const & right);
 
 	protected:
-		int			_HP;
+		std::string	_type;
+		int			_X;
+		int			_Y;
+
 };
 
 #endif

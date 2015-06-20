@@ -6,34 +6,24 @@
 /*   By: etermeau <etermeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 14:32:27 by etermeau          #+#    #+#             */
-/*   Updated: 2015/06/20 14:32:28 by etermeau         ###   ########.fr       */
+/*   Updated: 2015/06/20 16:05:15 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Character.hpp"
+#include "Character.class.hpp"
+#include "AShip.class.hpp"
 
-Character::Character( void ) : _name("default"), _type("default") {
+/*-------------------- Constructors ---------------------*/
+Character::Character( void ) : AShip("Player", 0, 0) {
 
-	std::cout << " Your Character " << this->_name << "was created !" << std::endl;
+	std::cout << "Your Character Type: " << this->_type << "in position " << this->_X << "/" << this->_Y << " was created !" << std::endl;
 	return;
 }
 
-Character::Charatcer( Character const & src) {
-	*this = src;
-	return ;
-}
-
+/*-------------------- Destructors ---------------------*/
 Character::~Character( void ) {
 
 	std::cout << "Your Character was destroyed !" << std::endl;
 	return ;
 }
 
-Character & Character::operator=( Character const & rhs) {
-
-	if (this != &rhs)
-	{
-	
-	}
-	return;
-}

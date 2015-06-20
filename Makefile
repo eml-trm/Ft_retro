@@ -3,45 +3,59 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: etermeau <etermeau@student.42.fr>          +#+  +:+       +#+         #
+#    By: bsautron <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/06/15 17:37:47 by etermeau          #+#    #+#              #
-#    Updated: 2015/06/15 17:37:48 by etermeau         ###   ########.fr        #
+#    Created: 2015/06/16 11:13:38 by bsautron          #+#    #+#              #
+#    Updated: 2015/06/20 16:22:30 by bsautron         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ft_retro
-
 CC = clang++
+NAME = ft_retro
+CFLAGS = -Wextra -Wall -Werror
 
-HEADER = includes/
+SRC_MAIN = main.cpp
 
-DIRSRC = srcs/
+SRC_CLASS = AShip.class.cpp \
+			Character.class.cpp \
+			Enemy.class.cpp \
+			PetitMechant.class.cpp
 
-FLAGS = -Wall -Wextra -Werror
+SRC = $(SRC_MAIN)
+SRC += $(addprefix srcs/, $(SRC_CLASS))
 
-SRC = Character.class.cpp \
-	Enemy.class.cpp
+HEADER = includes/AShip.class.hpp \
+		 includes/Character.class.hpp \
+		 includes/Enemy.class.hpp \
+		 includes/PetitMechant.class.hpp
 
-OBJ = $(SRC:.cpp=.o)
+DIR_HEADERS = -I includes/
 
-.PHONY: all clean fclean re
+OBJ = $(SRC:%.cpp=.obj/%.o)
 
-all: $(NAME)
+OBJ_DIR = .obj/ \
+		  .obj/srcs/
+
+.PHONY: all libs clean fclean re
+
+all: dor $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) $(FLAGS) -o $(NAME) $^
+	@$(CC) -o $@ $^
+	@echo "\033[32mReady!\033[0m"
 
-%.o: $(DIRSRC)%.cpp
-	@$(CC) $(FLAGS) -o $@ -c $< -I$(HEADER)
+dor:
+	@mkdir $(OBJ_DIR) 2> /dev/null || env -i
+
+.obj/%.o: %.cpp $(HEADER)
+	@echo "\033[33m 	$<"
+	@$(CC) $(CFLAGS) -o $@ $(DIR_HEADERS) -c $<
 
 clean:
 	@rm -f $(OBJ)
-	@echo "\033[4;32mDeleted\033[0;33m $(OBJ)\033[0m"
+	@rmdir $(OBJ_DIR) 2> /dev/null || env -i
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "\033[4;32mDeleted\033[0;33m $(NAME)\033[0m"
 
 re: fclean all
-

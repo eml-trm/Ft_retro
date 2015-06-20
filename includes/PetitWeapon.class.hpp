@@ -6,7 +6,7 @@
 /*   By: etermeau <etermeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 17:04:25 by etermeau          #+#    #+#             */
-/*   Updated: 2015/06/20 17:04:26 by etermeau         ###   ########.fr       */
+/*   Updated: 2015/06/20 19:11:06 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,16 @@
 class PetitWeapon: public AWeapon
 {
 
-public:
-	PetitWeapon( void );
-	virtual ~PetitWeapon( void );
+	public:
+		PetitWeapon( int X, int Y );
+		virtual ~PetitWeapon( void );
 
-	// virtual void attack( void ) const ;
+		// virtual void attack( void ) const ;
 
-private:
-	PetitWeapon( PetitWeapon const & src);
-	PetitWeapon & operator=( PetitWeapon const & rhs);
+	private:
+		PetitWeapon( void );
+		PetitWeapon( PetitWeapon const & src);
+		PetitWeapon & operator=( PetitWeapon const & rhs);
 };
 
 #endif

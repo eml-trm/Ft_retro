@@ -6,7 +6,7 @@
 /*   By: etermeau <etermeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 15:44:25 by etermeau          #+#    #+#             */
-/*   Updated: 2015/06/20 15:44:27 by etermeau         ###   ########.fr       */
+/*   Updated: 2015/06/20 19:15:11 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,25 @@
 # define MISSILE_CLASS_HPP
 
 # include <iostream>
+# include "Identity.class.hpp"
 
-class Missile
+class Missile : public Identity
 {
 
-public:
-	Missile( std::string type, int damage, int x, int y);
-	virtual ~Missile( void );
+	public:
+		Missile( std::string type, int damage, int X, int Y);
+		virtual ~Missile( void );
 
-	int 		getDamage( void );
-	std::string	getType( void );
-	int			getX( void );
-	int			getY( void );
+		int 		getDamage( void );
 
-protected:
-	std::string _type;
-	int			_damage;
-	int 		_X;
-	int 		_Y;
+	protected:
+		int			_damage;
 
-private:
-	Missile( void );
-	
-	Missile & operator=( Missile const & rhs);
-	Missile( Missile const & src);
+	private:
+		Missile( void );
+
+		Missile & operator=( Missile const & rhs);
+		Missile( Missile const & src);
 };
 
 #endif

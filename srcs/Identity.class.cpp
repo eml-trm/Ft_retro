@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PetitMechant.class.cpp                             :+:      :+:    :+:   */
+/*   Identity.class.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/20 16:14:17 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/20 19:10:29 by bsautron         ###   ########.fr       */
+/*   Created: 2015/06/20 18:49:25 by bsautron          #+#    #+#             */
+/*   Updated: 2015/06/20 19:21:12 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PetitMechant.class.hpp"
-#include "Enemy.class.hpp"
-#include "LittleMissile.class.hpp"
-#include "PetitWeapon.class.hpp"
+#include "Identity.class.hpp"
 
 /*-------------- Constructors -------------*/
-PetitMechant::PetitMechant(int X, int Y) : Enemy("Petit Mechant", X, Y) {
-	AWeapon		*petit = new PetitWeapon(X, Y);
-
-	this->_weapon = petit;
-	//std::cout << "PetitMechant: Default constructor" << std::endl;
+Identity::Identity(std::string type, int X, int Y) :_type(type),  _X(X), _Y(Y) {
+	//std::cout << "Identity: Default constructor" << std::endl;
 	return ;
 }
 
 /*--------------- Destructors --------------*/
-PetitMechant::~PetitMechant(void) {
-	//std::cout << "PetitMechant: Destructor" << std::endl;
+Identity::~Identity(void) {
+	//std::cout << "Identity: Destructor" << std::endl;
 	return ;
 }
 
@@ -35,8 +29,15 @@ PetitMechant::~PetitMechant(void) {
 
 
 /*------------------ Geter -----------------*/
-
-
+std::string			Identity::getType(void) const {
+	return (this->_type);
+}
+int					Identity::getX(void) const {
+	return (this->_X);
+}
+int					Identity::getY(void) const {
+	return (this->_Y);
+}
 
 
 /*------------------ Seter -----------------*/

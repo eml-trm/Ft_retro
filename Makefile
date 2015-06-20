@@ -6,7 +6,7 @@
 #    By: bsautron <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/06/16 11:13:38 by bsautron          #+#    #+#              #
-#    Updated: 2015/06/20 17:53:59 by bsautron         ###   ########.fr        #
+#    Updated: 2015/06/20 18:57:46 by bsautron         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ CFLAGS = -Wextra -Wall -Werror
 
 SRC_MAIN = main.cpp
 
-SRC_CLASS = AShip.class.cpp \
+SRC_CLASS = Identity.class.cpp \
+			AShip.class.cpp \
 			Character.class.cpp \
 			Enemy.class.cpp \
 			AWeapon.class.cpp \
@@ -28,7 +29,8 @@ SRC_CLASS = AShip.class.cpp \
 SRC = $(SRC_MAIN)
 SRC += $(addprefix srcs/, $(SRC_CLASS))
 
-HEADER = includes/AShip.class.hpp \
+HEADER = includes/Identity.class.hpp \
+		 includes/AShip.class.hpp \
 		 includes/Character.class.hpp \
 		 includes/Enemy.class.hpp \
 		 includes/Missile.class.hpp \

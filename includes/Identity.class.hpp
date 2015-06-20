@@ -1,39 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AShip.class.hpp                                    :+:      :+:    :+:   */
+/*   Identity.class.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/20 15:13:17 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/20 18:53:23 by bsautron         ###   ########.fr       */
+/*   Created: 2015/06/20 18:48:11 by bsautron          #+#    #+#             */
+/*   Updated: 2015/06/20 19:20:40 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ASHIP_CLASS_HPP 
-# define ASHIP_CLASS_HPP
+#ifndef IDENTITY_CLASS_HPP 
+# define IDENTITY_CLASS_HPP
 
 # include <iostream>
-# include "AWeapon.class.hpp"
-# include "Identity.class.hpp"
 
-class	AShip : public Identity
+class	Identity
 {
 	public:
-		AShip(std::string type, int X, int Y);
-		virtual ~AShip(void);
+		Identity(std::string type, int X, int Y);
+		virtual ~Identity(void);
 
-		AWeapon			* getWeapon(void) const;
-
+		int			getX(void) const;
+		int			getY(void) const;
+		std::string	getType(void) const;
 
 	private:
-		AShip(void);
-		AShip(AShip const & src);
-
-		AShip		& operator=(AShip const & right);
+		Identity(void);
+		Identity(Identity const & src);
+		Identity		& operator=(Identity const & right);
 
 	protected:
-		AWeapon		*_weapon;
+		std::string	_type;
+		int			_X;
+		int			_Y;
 
 };
 

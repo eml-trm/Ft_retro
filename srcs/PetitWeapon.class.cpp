@@ -6,7 +6,7 @@
 /*   By: etermeau <etermeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 17:04:07 by etermeau          #+#    #+#             */
-/*   Updated: 2015/06/20 17:04:09 by etermeau         ###   ########.fr       */
+/*   Updated: 2015/06/20 19:11:28 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 #include "LittleMissile.class.hpp"
 
 /* Constructor */
-PetitWeapon::PetitWeapon( void ): AWeapon("Petit Weapon") {
-	Missile 	*petit = new LittleMissile(0, 0);
+PetitWeapon::PetitWeapon( int X, int Y ): AWeapon("Petit Weapon", X, Y) {
+	Missile 	*petit = new LittleMissile(X, Y);
 	this->_missile = petit;
 	return ;
 }

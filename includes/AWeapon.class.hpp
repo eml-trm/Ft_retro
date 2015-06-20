@@ -6,7 +6,7 @@
 /*   By: etermeau <etermeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 15:06:38 by etermeau          #+#    #+#             */
-/*   Updated: 2015/06/20 17:05:05 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/20 19:07:41 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,28 @@
 
 # include <iostream>
 # include "Missile.class.hpp"
+# include "Identity.class.hpp"
 
-class AWeapon
+class AWeapon : public Identity
 {
 
-public:
-	AWeapon(std::string type);
-	virtual ~AWeapon();
-	
+	public:
+		AWeapon(std::string type, int X, int Y);
+		virtual ~AWeapon();
 
-	std::string 	getType() const;
-	Missile 		*getMissile() const;
-	// virtual void 	attack() const = 0;
 
-protected:
-	std::string _type;
-	Missile		*_missile;
+		Missile 		*getMissile() const;
+		// virtual void 	attack() const = 0;
 
-private:
-	AWeapon( void );
-	AWeapon( AWeapon const & src);
+	private:
+		AWeapon( void );
+		AWeapon( AWeapon const & src);
 
-	AWeapon & operator=( AWeapon const & rhs);
+		AWeapon & operator=( AWeapon const & rhs);
+
+	protected:
+		Missile		*_missile;
+
 };
 
 #endif

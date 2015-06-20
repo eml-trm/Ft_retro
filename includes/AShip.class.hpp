@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 15:13:17 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/20 16:09:21 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/20 17:30:44 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define ASHIP_CLASS_HPP
 
 # include <iostream>
+# include "AWeapon.class.hpp"
 
 class	AShip
 {
@@ -34,6 +35,7 @@ class	AShip
 		std::string	_type;
 		int			_X;
 		int			_Y;
+		AWeapon		*_weapon;
 
 };
 

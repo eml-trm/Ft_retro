@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 15:56:14 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/20 16:08:51 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/20 17:28:37 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 class	Enemy : public AShip
 {
 	public:
-		Enemy(std::string type, int X, int Y);		
+		Enemy(std::string type, int X, int Y);
 		virtual ~Enemy(void);
 
 
@@ -30,7 +30,7 @@ class	Enemy : public AShip
 		Enemy		& operator=(Enemy const & right);
 
 	protected:
-		int			_HP;
+		int					_HP;
 };
 
 #endif

@@ -1,13 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Enemy.hpp                                          :+:      :+:    :+:   */
+/*   Enemy.class.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etermeau <etermeau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/20 14:32:16 by etermeau          #+#    #+#             */
-/*   Updated: 2015/06/20 14:32:17 by etermeau         ###   ########.fr       */
+/*   Created: 2015/06/20 15:56:14 by bsautron          #+#    #+#             */
+/*   Updated: 2015/06/20 16:08:51 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef ENEMY_CLASS_HPP 
+# define ENEMY_CLASS_HPP
+
+# include <iostream>
+# include "AShip.class.hpp"
+
+class	Enemy : public AShip
+{
+	public:
+		Enemy(std::string type, int X, int Y);		
+		virtual ~Enemy(void);
+
+
+	private:
+		Enemy(void);
+		Enemy(Enemy const & src);
+
+		Enemy		& operator=(Enemy const & right);
+
+	protected:
+		int			_HP;
+};
+
+#endif
 

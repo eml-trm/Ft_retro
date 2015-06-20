@@ -1,39 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AShip.class.hpp                                    :+:      :+:    :+:   */
+/*   PetitMechant.class.hpp                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/20 15:13:17 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/20 16:09:21 by bsautron         ###   ########.fr       */
+/*   Created: 2015/06/20 16:13:10 by bsautron          #+#    #+#             */
+/*   Updated: 2015/06/20 16:20:51 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ASHIP_CLASS_HPP 
-# define ASHIP_CLASS_HPP
+#ifndef PETITMECHANT_CLASS_HPP 
+# define PETITMECHANT_CLASS_HPP
 
 # include <iostream>
+# include "Enemy.class.hpp"
 
-class	AShip
+class	PetitMechant : public Enemy
 {
 	public:
-		AShip(std::string type, int X, int Y);
-		virtual ~AShip(void);
-
-		std::string		getType(void) const;
-
+		PetitMechant(int X, int Y);
+		~PetitMechant(void);
 
 	private:
-		AShip(void);
-		AShip(AShip const & src);
+		PetitMechant(void);
+		PetitMechant(PetitMechant const & src);
 
-		AShip		& operator=(AShip const & right);
-
-	protected:
-		std::string	_type;
-		int			_X;
-		int			_Y;
+		PetitMechant		& operator=(PetitMechant const & right);
 
 };
 

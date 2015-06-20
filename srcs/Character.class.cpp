@@ -6,7 +6,7 @@
 /*   By: etermeau <etermeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 14:32:27 by etermeau          #+#    #+#             */
-/*   Updated: 2015/06/20 15:53:19 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/20 16:05:15 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 #include "AShip.class.hpp"
 
 /*-------------------- Constructors ---------------------*/
-Character::Character( void ) : AShip("player", 0, 0) {
+Character::Character( void ) : AShip("Player", 0, 0) {
 
-	std::cout << "Your Character " << this->_name << "in position " << this->_X << "/" << this->_Y << " was created !" << std::endl;
+	std::cout << "Your Character Type: " << this->_type << "in position " << this->_X << "/" << this->_Y << " was created !" << std::endl;
 	return;
 }
 
-/*-------------------- Desstructors ---------------------*/
+/*-------------------- Destructors ---------------------*/
 Character::~Character( void ) {
 
 	std::cout << "Your Character was destroyed !" << std::endl;

@@ -6,7 +6,7 @@
 #    By: bsautron <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/06/16 11:13:38 by bsautron          #+#    #+#              #
-#    Updated: 2015/06/20 15:47:41 by bsautron         ###   ########.fr        #
+#    Updated: 2015/06/20 16:22:30 by bsautron         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,13 +17,17 @@ CFLAGS = -Wextra -Wall -Werror
 SRC_MAIN = main.cpp
 
 SRC_CLASS = AShip.class.cpp \
-			Character.class.cpp
+			Character.class.cpp \
+			Enemy.class.cpp \
+			PetitMechant.class.cpp
 
 SRC = $(SRC_MAIN)
 SRC += $(addprefix srcs/, $(SRC_CLASS))
 
 HEADER = includes/AShip.class.hpp \
-		 includes/Character.class.hpp
+		 includes/Character.class.hpp \
+		 includes/Enemy.class.hpp \
+		 includes/PetitMechant.class.hpp
 
 DIR_HEADERS = -I includes/
 

@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 15:58:37 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/20 17:44:41 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/20 17:56:41 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 /*-------------- Constructors -------------*/
 Enemy::Enemy(std::string type, int X, int Y) : AShip(type, X, Y) {
-	std::cout << "Enemy(" << this->_type << "): popped at " << this->_X << "/" << this->_Y << " with a " << std::endl;
-	printf("%p\n", this->_weapon);
+	std::cout << "Enemy(" << this->_type << "): popped at " << this->_X << "/" << this->_Y << std::endl;
+
 	return ;
 }
 

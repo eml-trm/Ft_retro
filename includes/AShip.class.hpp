@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 15:13:17 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/20 17:30:44 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/20 17:58:34 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ class	AShip
 		virtual ~AShip(void);
 
 		std::string		getType(void) const;
+		AWeapon			* getWeapon(void) const;
 
 
 	private:

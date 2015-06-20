@@ -19,7 +19,11 @@ SRC_MAIN = main.cpp
 SRC_CLASS = AShip.class.cpp \
 			Character.class.cpp \
 			Enemy.class.cpp \
-			PetitMechant.class.cpp
+			PetitMechant.class.cpp \
+			AWeapon.class.cpp \
+			LittleMissile.class.cpp \
+			Missile.class.cpp \
+			PetitWeapon.cpp 
 
 SRC = $(SRC_MAIN)
 SRC += $(addprefix srcs/, $(SRC_CLASS))
@@ -27,7 +31,11 @@ SRC += $(addprefix srcs/, $(SRC_CLASS))
 HEADER = includes/AShip.class.hpp \
 		 includes/Character.class.hpp \
 		 includes/Enemy.class.hpp \
-		 includes/PetitMechant.class.hpp
+		 includes/PetitMechant.class.hpp \
+		 includes/AWeapon.class.hpp \
+		 includes/LittleMissile.calss.hpp \
+		 includes/Missile.class.hpp \
+		 includes/PetitWeapon.class.hpp 
 
 DIR_HEADERS = -I includes/
 

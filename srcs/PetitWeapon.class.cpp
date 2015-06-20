@@ -11,11 +11,15 @@
 /* ************************************************************************** */
 
 
-#include "AWeapon.class.hpp"
 #include "PetitWeapon.class.hpp"
+#include "AWeapon.class.hpp"
+#include "LittleMissile.class.hpp"
+
 /* Constructor */
 PetitWeapon::PetitWeapon( void ): AWeapon("Petit Weapon") {
-		return ;
+	Missile 	*petit = new LittleMissile(0, 0);
+	this->_missile = petit;
+	return ;
 }
 
 
@@ -34,4 +38,3 @@ PetitWeapon::~PetitWeapon( void ) {
 
 
 /* Get */
-

@@ -13,7 +13,7 @@
 #ifndef PETITWEAPON_CLASS_HPP
 # define PETITWEAPON_CLASS_HPP
 
-#include "AWeapon.class.hpp"
+# include "AWeapon.class.hpp"
 
 class PetitWeapon: public AWeapon
 {

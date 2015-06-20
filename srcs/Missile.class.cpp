@@ -13,7 +13,7 @@
 #include "Missile.class.hpp"
 
 /* Constructor */
-Missile::Missile( std::string type, int damage ) : _type(type), _damage(damage) {
+Missile::Missile( std::string type, int damage, int x, int y) : _type(type), _damage(damage), _X(x), _Y(y) {
 		return ;
 }
 
@@ -26,10 +26,19 @@ Missile::~Missile( void ) {
 
 
 /* Get */
+
 int 		Missile::getDamage( void ) {
 	return (this->_damage);
 }
 
 std::string	Missile::getType( void ) {
 	return (this->_type);
+}
+
+int 		Missile::getX( void ) {
+	return (this->_X);
+}
+
+int			Missile::getY( void ) {
+	return (this->_Y);
 }

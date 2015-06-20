@@ -13,21 +13,25 @@
 #ifndef MISSILE_CLASS_HPP
 # define MISSILE_CLASS_HPP
 
-#include <iostream>
+# include <iostream>
 
 class Missile
 {
 
 public:
-	Missile( std::string type, int damage);
+	Missile( std::string type, int damage, int x, int y);
 	virtual ~Missile( void );
 
 	int 		getDamage( void );
 	std::string	getType( void );
+	int			getX( void );
+	int			getY( void );
 
 protected:
 	std::string _type;
 	int			_damage;
+	int 		_X;
+	int 		_Y;
 
 private:
 	Missile( void );

@@ -13,13 +13,13 @@
 #ifndef LITTLEMISSILE_CLASS_HPP
 # define LITTLEMISSILE_CLASS_HPP
 
-#include "Missile.class.hpp"
+# include "Missile.class.hpp"
 
 class LittleMissile: public Missile
 {
 
 public:
-	LittleMissile( void );
+	LittleMissile( int x, int y);
 	virtual ~LittleMissile( void );
 
 
@@ -27,6 +27,7 @@ protected:
 	int _damage;
 
 private:
+	LittleMissile( void );
 	LittleMissile( LittleMissile const & src);
 	LittleMissile & operator=( LittleMissile const & rhs);
 };

@@ -13,7 +13,7 @@
 #include "AWeapon.class.hpp"
 
 /* Constructor */
-AWeapon::AWeapon( std::string type ): _type(type) {
+AWeapon::AWeapon( std::string type ): _type(type), _missile(0) {
 		return ;
 }
 
@@ -25,6 +25,9 @@ AWeapon::~AWeapon( void ) {
 /* Operator */
 
 /* Get */
+Missile  	*AWeapon::getMissile( void ) const {
+	return (this->_missile);
+}
 std::string 	AWeapon::getType( void ) const {
 	return (this->_type);
 }

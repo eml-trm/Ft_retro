@@ -6,7 +6,7 @@
 #    By: bsautron <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/06/16 11:13:38 by bsautron          #+#    #+#              #
-#    Updated: 2015/06/20 16:22:30 by bsautron         ###   ########.fr        #
+#    Updated: 2015/06/20 17:53:59 by bsautron         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,11 +19,11 @@ SRC_MAIN = main.cpp
 SRC_CLASS = AShip.class.cpp \
 			Character.class.cpp \
 			Enemy.class.cpp \
-			PetitMechant.class.cpp \
 			AWeapon.class.cpp \
 			LittleMissile.class.cpp \
 			Missile.class.cpp \
-			PetitWeapon.cpp 
+			PetitWeapon.class.cpp \
+			PetitMechant.class.cpp
 
 SRC = $(SRC_MAIN)
 SRC += $(addprefix srcs/, $(SRC_CLASS))
@@ -31,11 +31,11 @@ SRC += $(addprefix srcs/, $(SRC_CLASS))
 HEADER = includes/AShip.class.hpp \
 		 includes/Character.class.hpp \
 		 includes/Enemy.class.hpp \
-		 includes/PetitMechant.class.hpp \
-		 includes/AWeapon.class.hpp \
-		 includes/LittleMissile.calss.hpp \
 		 includes/Missile.class.hpp \
-		 includes/PetitWeapon.class.hpp 
+		 includes/LittleMissile.class.hpp \
+		 includes/AWeapon.class.hpp \
+		 includes/PetitWeapon.class.hpp \
+		 includes/PetitMechant.class.hpp
 
 DIR_HEADERS = -I includes/
 

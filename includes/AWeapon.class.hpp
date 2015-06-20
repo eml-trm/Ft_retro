@@ -6,14 +6,15 @@
 /*   By: etermeau <etermeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 15:06:38 by etermeau          #+#    #+#             */
-/*   Updated: 2015/06/20 15:06:39 by etermeau         ###   ########.fr       */
+/*   Updated: 2015/06/20 17:05:05 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef AWEAPON_CLASS_HPP
 # define AWEAPON_CLASS_HPP
 
-#include <iostream>
+# include <iostream>
+# include "Missile.class.hpp"
 
 class AWeapon
 {
@@ -24,10 +25,12 @@ public:
 	
 
 	std::string 	getType() const;
+	Missile 		*getMissile() const;
 	// virtual void 	attack() const = 0;
 
 protected:
 	std::string _type;
+	Missile		*_missile;
 
 private:
 	AWeapon( void );

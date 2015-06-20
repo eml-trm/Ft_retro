@@ -1,39 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AWeapon.class.hpp                                  :+:      :+:    :+:   */
+/*   PetitWeapon.class.hpp                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: etermeau <etermeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/20 15:06:38 by etermeau          #+#    #+#             */
-/*   Updated: 2015/06/20 15:06:39 by etermeau         ###   ########.fr       */
+/*   Created: 2015/06/20 17:04:25 by etermeau          #+#    #+#             */
+/*   Updated: 2015/06/20 17:04:26 by etermeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef AWEAPON_CLASS_HPP
-# define AWEAPON_CLASS_HPP
+#ifndef PETITWEAPON_CLASS_HPP
+# define PETITWEAPON_CLASS_HPP
 
-#include <iostream>
+#include "AWeapon.class.hpp"
 
-class AWeapon
+class PetitWeapon: public AWeapon
 {
 
 public:
-	AWeapon(std::string type);
-	virtual ~AWeapon();
-	
+	PetitWeapon( void );
+	virtual ~PetitWeapon( void );
 
-	std::string 	getType() const;
-	// virtual void 	attack() const = 0;
-
-protected:
-	std::string _type;
+	// virtual void attack( void ) const ;
 
 private:
-	AWeapon( void );
-	AWeapon( AWeapon const & src);
-
-	AWeapon & operator=( AWeapon const & rhs);
+	PetitWeapon( PetitWeapon const & src);
+	PetitWeapon & operator=( PetitWeapon const & rhs);
 };
 
 #endif

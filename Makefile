@@ -6,7 +6,7 @@
 #    By: bsautron <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/06/16 11:13:38 by bsautron          #+#    #+#              #
-#    Updated: 2015/06/20 18:57:46 by bsautron         ###   ########.fr        #
+#    Updated: 2015/06/20 19:41:07 by bsautron         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ SRC_CLASS = Identity.class.cpp \
 SRC = $(SRC_MAIN)
 SRC += $(addprefix srcs/, $(SRC_CLASS))
 
-HEADER = includes/Identity.class.hpp \
+HEADER = includes/ft_retro.hpp \
+		 includes/Identity.class.hpp \
 		 includes/AShip.class.hpp \
 		 includes/Character.class.hpp \
 		 includes/Enemy.class.hpp \

@@ -44,6 +44,7 @@ class	Game
 		void	render(void) const;
 		void	printInfo(void) const;
 		void	gameOver(void) const ;
+		void	background(void) const ;
 
 
 	private:

@@ -74,6 +74,7 @@ void			Game::init_curses(void)
 	getmaxyx(stdscr, this->_height, this->_width);
 	start_color();
 	init_pair(1, COLOR_WHITE, COLOR_BLACK);
+	init_pair(2, COLOR_YELLOW, COLOR_BLACK);
 }
 
 #include <stdio.h>
@@ -195,7 +196,6 @@ void			Game::spawnEnemy(void) {
 
 void			Game::run(void) {
 
-	//int		x;
 	int		mSpeed = 0;
 	int		enemySpeed = 0;
 	int		ch;
@@ -268,6 +268,7 @@ void			Game::gameOver(void) const {
 
 void			Game::render(void) const {
 	clear();
+	this->background();
 	for (int i = 0; i < MAX_MISSIL_PLAYER; i++)
 	{
 		if (this->_mPlayer[i]) {
@@ -295,6 +296,22 @@ void			Game::render(void) const {
 	}
 	this->printInfo();
 	refresh();
+}
+
+void			Game::background(void) const {
+
+	attron(COLOR_PAIR(2)|A_BOLD);
+	move(LIMAX_SPACE_Y, LIMAX_SPACE_X);
+	printw("               .        o        .                           .");
+	printw("       .                .                         .           ");
+	printw("                                                             .");
+	printw(".                   .                     .                   ");
+	printw("           .                .                                .");
+	printw("       |       .                       .           .          ");
+	printw("      -O-                                                     ");
+	printw("       |       .             .                         .      ");
+	printw("                              .      .                        ");
+	attroff(COLOR_PAIR(2));
 }
 
 void			Game::printInfo(void) const {

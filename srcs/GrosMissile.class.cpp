@@ -6,7 +6,7 @@
 /*   By: etermeau <etermeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/21 09:49:44 by etermeau          #+#    #+#             */
-/*   Updated: 2015/06/21 09:49:46 by etermeau         ###   ########.fr       */
+/*   Updated: 2015/06/21 18:23:51 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "Missile.class.hpp"
 
 /* Constructor */
-GrosMissile::GrosMissile( int X, int Y): Missile("Gros Missile", 50, X, Y) {
+GrosMissile::GrosMissile( int X, int Y): Missile("Gros Missile", 50, X, Y, 3, 3, "|||") {
 //		std::cout << "Gros missile was created" << std::endl;
 		return ;
 }

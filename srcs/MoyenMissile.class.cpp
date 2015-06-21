@@ -6,7 +6,7 @@
 /*   By: etermeau <etermeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/21 09:53:30 by etermeau          #+#    #+#             */
-/*   Updated: 2015/06/21 09:53:31 by etermeau         ###   ########.fr       */
+/*   Updated: 2015/06/21 18:23:12 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "Missile.class.hpp"
 
 /* Constructor */
-MoyenMissile::MoyenMissile( int X, int Y): Missile("Moyen Missile", 20, X, Y) {
+MoyenMissile::MoyenMissile( int X, int Y): Missile("Moyen Missile", 20, X, Y, 2, 1, "()") {
 //		std::cout << "Moyen missile was created" << std::endl;
 		return ;
 }

@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/21 01:01:05 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/21 15:41:54 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/21 15:53:30 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,22 @@ void			Game::handleEvent(int ch) {
 		endwin();
 		exit(0);
 	}
-	if (ch == KEY_LEFT)
-		this->_player.setX(this->_player.getX() - 1);
-	if (ch == KEY_RIGHT)
+	if (ch == KEY_LEFT) {
+		if (this->_player.getX() > 0)
+			this->_player.setX(this->_player.getX() - 1);
+	}
+	if (ch == KEY_RIGHT) {
+		if (this->_player.getX() < this->_width - 1)
 		this->_player.setX(this->_player.getX() + 1);
-	if (ch == KEY_DOWN)
-		this->_player.setY(this->_player.getY() + 1);
-	if (ch == KEY_UP)
-		this->_player.setY(this->_player.getY() - 1);
+	}
+	if (ch == KEY_DOWN) {
+		if (this->_player.getY() < this->_height - 1)
+			this->_player.setY(this->_player.getY() + 1);
+	}
+	if (ch == KEY_UP) {
+		if (this->_player.getY() > 0)
+			this->_player.setY(this->_player.getY() - 1);
+	}
 	if (ch == ' ') {
 		for (int i = 0; i < MAX_MISSIL_PLAYER; i++)
 		{

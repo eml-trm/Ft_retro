@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 18:49:25 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/21 13:09:39 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/21 13:24:14 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ Identity::Identity(std::string type, int X, int Y, int sizex, int sizey) :
 		_X(X), _Y(Y),
 		_sizeX(sizex),
 		_sizeY(sizey),
-		_ship("v v\n *"),
+		_skin("v v\n *"),
 		_alive(true) {
 	//std::cout << "Identity: Default constructor" << std::endl;
 	return ;
@@ -50,8 +50,8 @@ int 				Identity::getSizeX(void) const {
 int 				Identity::getSizeY(void) const {
 	return (this->_sizeY);
 }
-std::string			Identity::getShip(void) const {
-	return (this->_ship);
+std::string			Identity::getSkin(void) const {
+	return (this->_skin);
 }
 bool				Identity::getAlive(void) const {
 	return (this->_alive);

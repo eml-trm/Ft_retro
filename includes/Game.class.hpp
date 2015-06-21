@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/21 00:58:24 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/21 17:54:06 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/21 18:32:03 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,14 @@
 # include "Identity.class.hpp"
 # include "Character.class.hpp"
 # include "Enemy.class.hpp"
+# include "Character.class.hpp":
 # include <curses.h>
 
 # define	MAX_ENEMY			10
 # define	MAX_MISSIL_ENEMY	30
 # define	MAX_MISSIL_PLAYER	100
+
+# define	COLOR_1				20
 
 class	Game
 {
@@ -35,7 +38,7 @@ class	Game
 		void	run(void);
 		void	collision(void);
 		void	render(void) const;
-		// void	printInfo(void) const;
+		void	printInfo(void) const;
 	//	void	gameOver(void);
 
 
@@ -51,6 +54,7 @@ class	Game
 		int				_width;
 		int				_height;
 		int				_score;
+		int 			_time;
 
 		Enemy			*_enemy[MAX_ENEMY];
 		Missile			*_mEnemy[MAX_MISSIL_ENEMY];

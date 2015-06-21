@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/21 01:01:05 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/21 18:30:38 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/21 18:32:17 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ Game::Game(void) :
 	_player(0, 0),
 	_running(true),
 	_width(0),
-	_height(0)
+	_height(0),
+	_time(0)
 {
 
 	std::srand(std::time(0));
@@ -70,6 +71,8 @@ void			Game::init_curses(void)
 	curs_set(0);
 	keypad(stdscr, true);
 	getmaxyx(stdscr, this->_height, this->_width);
+	start_color();
+	init_pair(1, COLOR_WHITE, COLOR_BLACK);
 }
 
 #include <stdio.h>
@@ -264,12 +267,19 @@ void			Game::render(void) const {
 		move(this->_player.getY(), this->_player.getX());
 		printw("%s", this->_player.getSkin().c_str());
 	}
-	move(0, 0);
-	printw("%d", this->_score);
+	this->printInfo();
 	refresh();
 }
 
-// void			Game::printInfo(void) const {
+void			Game::printInfo(void) const {
 
-// 	mvprintw(30, 30, "Score: ");
-// }
+	attron(COLOR_PAIR(1));
+	mvprintw(this->_height - 4, this->_height - 80, "+------------------+");
+	mvprintw(80, 3, "| Score: ");
+	mvprintw(80, 12, "%d", this->_score);
+	mvprintw(81, 3, "| Time: ");
+	mvprintw(81, 12, "%d", this->_time);
+	mvprintw(this->_height - 1, this->_height - 80, "+------------------+");
+	refresh();
+	attroff(COLOR_PAIR(1));
+}

@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/21 01:01:05 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/21 16:53:32 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/21 17:07:35 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,21 +121,38 @@ void			Game::collision(void) {
 					this->_mPlayer[i] = 0;
 					this->_enemy[j] = 0;
 				}
-				if (this->_enemy[j] && this->_enemy[j]->getY() > this->_height - 3) {
-					delete this->_enemy[j];
-					this->_enemy[j] = 0;
-				}
 			}
 		}
-		if (this->_mPlayer[i] && this->_mPlayer[i]->getY() < 10) {
+		if (this->_mPlayer[i] && this->_mPlayer[i]->getY() < 1) {
 			delete this->_mPlayer[i];
 			this->_mPlayer[i] = 0;
+		}
+	}
+
+	for (int j = 0; j < MAX_ENEMY; j++)
+	{
+		if (this->_player.getAlive() && this->_enemy[j]) {
+
+			if (this->_player.getY() >= this->_enemy[j]->getY()
+					&& this->_player.getY() <= (this->_enemy[j]->getY() + this->_enemy[j]->getSizeY())
+					&& this->_player.getX() >= this->_enemy[j]->getX()
+					&& this->_player.getX() <= (this->_enemy[j]->getX() + this->_enemy[j]->getSizeX()))
+			{
+				this->_player.die();
+				delete this->_enemy[j];
+				this->_enemy[j] = 0;
+				this->_running = false;
+			}
+		}
+		if (this->_enemy[j] && this->_enemy[j]->getY() > this->_height - 3) {
+			delete this->_enemy[j];
+			this->_enemy[j] = 0;
 		}
 	}
 }
 
 void			Game::spawnEnemy(void) {
-	int		ran = rand() % 2;
+	int		ran = rand() % 100;
 	int		x = rand() % (this->_width - 10) + 5;
 
 	if (ran == 0)
@@ -144,20 +161,6 @@ void			Game::spawnEnemy(void) {
 			if (!this->_enemy[i]) {
 				this->_enemy[i] = new PetitMechant(x, 0);
 				return ;
-			}
-		}
-	}
-	for (int j = 0; j < MAX_ENEMY; j++)
-	{
-		if (this->_player.getAlive() && this->_enemy[j]) {
-		
-			if (this->_player.getY() >= this->_enemy[j]->getY()
-				&& this->_player.getY() <= (this->_enemy[j]->getY() + this->_enemy[j]->getSizeY())
-				&& this->_player.getX() >= this->_enemy[j]->getX()
-				&& this->_player.getX() <= (this->_enemy[j]->getX() + this->_enemy[j]->getSizeX()))
-			{
-				this->_player.die();
-				this->_enemy[j]->die();
 			}
 		}
 	}
@@ -173,37 +176,40 @@ void			Game::run(void) {
 	this->_player.setX(this->_width / 2);
 	this->_player.setY(this->_height - 2);
 
-	while (this->_running) {
+	while (1)
+	{
+		while (this->_running) {
 
-		this->spawnEnemy();
-		while ((ch = getch()) != ERR)
-			this->handleEvent(ch);
+			this->spawnEnemy();
+			while ((ch = getch()) != ERR)
+				this->handleEvent(ch);
 
-		if (enemySpeed == 10)
-		{
-			enemySpeed = 0;
-			for (int i = 0; i < MAX_ENEMY; i++)
+			if (enemySpeed == 20)
 			{
-				if (this->_enemy[i])
-					this->_enemy[i]->setY(this->_enemy[i]->getY() + 1);
+				enemySpeed = 0;
+				for (int i = 0; i < MAX_ENEMY; i++)
+				{
+					if (this->_enemy[i])
+						this->_enemy[i]->setY(this->_enemy[i]->getY() + 1);
+				}
+				this->collision();
 			}
-			this->collision();
-		}
 
-		if (mSpeed == 1)
-		{
-			mSpeed = 0;
-			for (int i = 0; i < MAX_MISSIL_PLAYER; i++)
+			if (mSpeed == 1)
 			{
-				if (this->_mPlayer[i])
-					this->_mPlayer[i]->setY(this->_mPlayer[i]->getY() - 1);
+				mSpeed = 0;
+				for (int i = 0; i < MAX_MISSIL_PLAYER; i++)
+				{
+					if (this->_mPlayer[i])
+						this->_mPlayer[i]->setY(this->_mPlayer[i]->getY() - 1);
+				}
+				this->collision();
 			}
-			this->collision();
+			mSpeed++;
+			enemySpeed++;
+			for (int i = 0; i < 4000000; i++);
+			this->render();
 		}
-		mSpeed++;
-		enemySpeed++;
-		for (int i = 0; i < 12000000; i++);
-		this->render();
 	}
 }
 

@@ -6,15 +6,21 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/21 01:01:05 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/21 17:07:35 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/21 18:32:17 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Game.class.hpp"
 #include "PetitMechant.class.hpp"
 #include "GrosMechant.class.hpp"
+#include "MoyenMechant.class.hpp"
 #include "LittleMissile.class.hpp"
+#include "MoyenMissile.class.hpp"
+#include "GrosMissile.class.hpp"
 #include <ctime>
+#include <chrono>
+#include <thread>
+
 /*-------------- Constructors -------------*/
 Game::Game(void) :
 	_player(0, 0),
@@ -79,11 +85,11 @@ void			Game::handleEvent(int ch) {
 	}
 	if (ch == KEY_LEFT) {
 		if (this->_player.getX() > 0)
-			this->_player.setX(this->_player.getX() - 1);
+			this->_player.setX(this->_player.getX() - 2);
 	}
 	if (ch == KEY_RIGHT) {
 		if (this->_player.getX() < this->_width - 1)
-			this->_player.setX(this->_player.getX() + 1);
+			this->_player.setX(this->_player.getX() + 2);
 	}
 	if (ch == KEY_DOWN) {
 		if (this->_player.getY() < this->_height - 1)
@@ -98,7 +104,8 @@ void			Game::handleEvent(int ch) {
 		{
 			if (!this->_mPlayer[i])
 			{
-				this->_mPlayer[i] = new LittleMissile(this->_player.getX(), this->_player.getY());
+				this->_mPlayer[i] = new GrosMissile(this->_player.getX(), this->_player.getY());
+				this->_mPlayer[i]->setX(this->_mPlayer[i]->getX() - this->_mPlayer[i]->getSizeX() / 2);
 				this->_mPlayer[i]->born();
 				return ;
 			}
@@ -114,18 +121,27 @@ void			Game::collision(void) {
 		{
 			if (this->_mPlayer[i] && this->_enemy[j]) {
 
-				if (this->_mPlayer[i]->getY() >= this->_enemy[j]->getY() 
-						&& this->_mPlayer[i]->getY() <= (this->_enemy[j]->getY() + this->_enemy[j]->getSizeY())
-						&& this->_mPlayer[i]->getX() >= this->_enemy[j]->getX()
-						&& this->_mPlayer[i]->getX() <= (this->_enemy[j]->getX() + this->_enemy[j]->getSizeX()))
+				for (int y = 0; y < this->_mPlayer[i]->getSizeY(); y++)
 				{
-					delete this->_mPlayer[i];
-					delete this->_enemy[j];
-					this->_mPlayer[i] = 0;
-					this->_enemy[j] = 0;
+					for (int x = 0; x < this->_mPlayer[i]->getSizeX(); x++)
+					{
+							if (this->_mPlayer[i]->getY() + y >= this->_enemy[j]->getY() 
+									&& this->_mPlayer[i]->getY() + y <= (this->_enemy[j]->getY() + this->_enemy[j]->getSizeY())
+									&& this->_mPlayer[i]->getX() + x >= this->_enemy[j]->getX()
+									&& this->_mPlayer[i]->getX() + x <= (this->_enemy[j]->getX() + this->_enemy[j]->getSizeX()))
+							{
+								this->_score += this->_enemy[j]->getValue();
+								delete this->_mPlayer[i];
+								delete this->_enemy[j];
+								this->_mPlayer[i] = 0;
+								this->_enemy[j] = 0;
+								return ;
+							}
+					}
 				}
 			}
 		}
+
 		if (this->_mPlayer[i] && this->_mPlayer[i]->getY() < 1) {
 			delete this->_mPlayer[i];
 			this->_mPlayer[i] = 0;
@@ -157,12 +173,18 @@ void			Game::collision(void) {
 void			Game::spawnEnemy(void) {
 	int		ran = rand() % 100;
 	int		x = rand() % (this->_width - 10) + 5;
+	int		type = rand() % 3;
 
 	if (ran == 0)
 	{
 		for (int i = 0; i < MAX_ENEMY; i++) {
 			if (!this->_enemy[i]) {
-				this->_enemy[i] = new PetitMechant(x, 0);
+				if (type == 0)
+					this->_enemy[i] = new PetitMechant(x, 0);
+				else if (type == 1)
+					this->_enemy[i] = new MoyenMechant(x, 0);
+				else if (type == 2)
+					this->_enemy[i] = new GrosMechant(x, 0);
 				return ;
 			}
 		}
@@ -175,6 +197,7 @@ void			Game::run(void) {
 	int		mSpeed = 0;
 	int		enemySpeed = 0;
 	int		ch;
+	int 	time = 0;
 
 	this->_player.setX(this->_width / 2);
 	this->_player.setY(this->_height - 2);
@@ -210,7 +233,13 @@ void			Game::run(void) {
 			}
 			mSpeed++;
 			enemySpeed++;
-			for (int i = 0; i < 4000000; i++);
+			std::this_thread::sleep_for(std::chrono::milliseconds(10));
+			time++;
+			if (time == 100)
+			{
+				this->_time++;
+				time = 0;
+			}
 			this->render();
 		}
 	}
@@ -223,8 +252,10 @@ void			Game::render(void) const {
 	for (int i = 0; i < MAX_MISSIL_PLAYER; i++)
 	{
 		if (this->_mPlayer[i]) {
-			move(this->_mPlayer[i]->getY(), this->_mPlayer[i]->getX());
-			printw("%s", this->_mPlayer[i]->getSkin().c_str());
+			for (int h = 0; h < this->_mPlayer[i]->getSizeY(); h++) {
+				move(this->_mPlayer[i]->getY() + h, this->_mPlayer[i]->getX());
+				printw("%s", this->_mPlayer[i]->getSkin().c_str());
+			}
 		}
 	}
 
@@ -250,12 +281,11 @@ void			Game::render(void) const {
 void			Game::printInfo(void) const {
 
 	attron(COLOR_PAIR(1));
-	mvprintw(this->_height - 4, this->_height - 80, "+------------------+");
-	mvprintw(80, 3, "| Score: ");
-	mvprintw(80, 12, "%d", this->_score);
-	mvprintw(81, 3, "| Time: ");
-	mvprintw(81, 12, "%d", this->_time);
-	mvprintw(this->_height - 1, this->_height - 80, "+------------------+");
+	move(this->_height - 5, this->_height - 80);
+	printw("+------------------+\n");
+	printw("| Score: %d\n", this->_score);
+	printw("| Time: %ds\n",this->_time);
+	printw("+------------------+");
 	refresh();
 	attroff(COLOR_PAIR(1));
 }

@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/21 00:58:24 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/21 16:54:28 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/21 18:32:03 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <iostream>
 # include "Identity.class.hpp"
+# include "Character.class.hpp"
+# include "Enemy.class.hpp"
 # include "Character.class.hpp"
 # include <curses.h>
 
@@ -54,9 +56,9 @@ class	Game
 		int				_score;
 		int 			_time;
 
-		Identity		*_enemy[MAX_ENEMY];
-		Identity		*_mEnemy[MAX_MISSIL_ENEMY];
-		Identity		*_mPlayer[MAX_MISSIL_PLAYER];
+		Enemy			*_enemy[MAX_ENEMY];
+		Missile			*_mEnemy[MAX_MISSIL_ENEMY];
+		Missile			*_mPlayer[MAX_MISSIL_PLAYER];
 
 
 };

@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 19:38:15 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/21 13:07:12 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/21 22:02:29 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 #include "GrosMechant.class.hpp"
 #include "GrosWeapon.class.hpp"
 #include "GrosMissile.class.hpp"
+#include "Boss.class.hpp"
+#include "BossWeapon.class.hpp"
 #include "Game.class.hpp"
 
 #endif

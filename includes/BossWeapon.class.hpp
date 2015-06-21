@@ -1,42 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AWeapon.class.hpp                                  :+:      :+:    :+:   */
+/*   BossWeapon.class.hpp                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: etermeau <etermeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/20 15:06:38 by etermeau          #+#    #+#             */
-/*   Updated: 2015/06/21 22:00:03 by bsautron         ###   ########.fr       */
+/*   Created: 2015/06/21 09:58:25 by etermeau          #+#    #+#             */
+/*   Updated: 2015/06/21 22:07:10 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef AWEAPON_CLASS_HPP
-# define AWEAPON_CLASS_HPP
+#ifndef BOSSWEAPON_CLASS_HPP
+# define BOSSWEAPON_CLASS_HPP
 
-# include <iostream>
-# include "Missile.class.hpp"
-# include "Identity.class.hpp"
+# include "AWeapon.class.hpp"
 
-class AWeapon : public Identity
+class BossWeapon: public AWeapon
 {
 
 	public:
-		AWeapon(std::string type, int X, int Y);
-		virtual ~AWeapon();
+		BossWeapon( int X, int Y );
+		virtual ~BossWeapon( void );
 
-
-		Missile 		*getMissile() const;
-		// virtual void 	attack() const = 0;
+		// virtual void attack( void ) const ;
 
 	private:
-		AWeapon( void );
-		AWeapon( AWeapon const & src);
-
-		AWeapon & operator=( AWeapon const & rhs);
-
-	protected:
-		Missile		*_missile;
-
+		BossWeapon( void );
+		BossWeapon( BossWeapon const & src);
+		BossWeapon & operator=( BossWeapon const & rhs);
 };
 
 #endif
+
+

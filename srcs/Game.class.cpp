@@ -27,6 +27,7 @@ Game::Game(void) :
 	_running(true),
 	_width(0),
 	_height(0),
+	_score(0),
 	_time(0),
 	_life(3)
 {
@@ -316,7 +317,7 @@ void			Game::run(void) {
 	this->gameOver();
 }
 
-void			Game::gameOver(void) const {
+void			Game::gameOver(void) {
 
 	move(LIMAX_SPACE_Y / 2, LIMAX_SPACE_X / 2);
 	printw("Game Over");
@@ -374,17 +375,13 @@ void			Game::createBackground(void) {
 	int x = 0;
 	int y = 0;
 
-
-	// rand = rand() % 
 	for (int i = 0; i < this->_height; i++)
 	{
-
 
 		for (int j = 0; j < this->_width; j++)
 			this->_bg[i][j] = 0;
 
 	}
-
 
 	for (int i = 0; i < 20; i++) {
 
@@ -404,14 +401,9 @@ void			Game::createBackground(void) {
 		y = rand() % (this->_height - 10) + 1;
 		this->_bg[y][x] = 'o';
 	}
-		// attron(COLOR_PAIR(2)|A_BOLD);
-		// move(LIMAX_SPACE_Y / i, LIMAX_SPACE_X / j);
-		// attroff(COLOR_PAIR(2));
 
 }
 void			Game::drawBackground(void) const {
-
-	// rand = rand() %
 
 	for (int i = 0; i < this->_height; i++)
 	{

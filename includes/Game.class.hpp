@@ -43,7 +43,7 @@ class	Game
 		void	collision(void);
 		void	render(void) const;
 		void	printInfo(void) const;
-		void	gameOver(void) const ;
+		void	gameOver(void) ;
 		void	createBackground(void) ;
 		void	drawBackground(void) const ;
 

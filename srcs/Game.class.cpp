@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/21 01:01:05 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/21 20:03:45 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/21 20:11:36 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ Game::Game(void) :
 	_running(true),
 	_width(0),
 	_height(0),
-	_time(0)
+	_time(0),
+	_life(3)
 {
 
 	std::srand(std::time(0));
@@ -73,6 +74,7 @@ void			Game::init_curses(void)
 	getmaxyx(stdscr, this->_height, this->_width);
 	start_color();
 	init_pair(1, COLOR_WHITE, COLOR_BLACK);
+	init_pair(2, COLOR_YELLOW, COLOR_BLACK);
 }
 
 
@@ -151,20 +153,23 @@ void			Game::collision(void) {
 	{
 		if (this->_mEnemy[i])
 		{
-		if (this->_player.getY() >= this->_mEnemy[i]->getY()
-				&& this->_player.getY() <= (this->_mEnemy[i]->getY() + this->_mEnemy[i]->getSizeY())
-				&& this->_player.getX() >= this->_mEnemy[i]->getX()
-				&& this->_player.getX() <= (this->_mEnemy[i]->getX() + this->_mEnemy[i]->getSizeX()))
-		{
-			this->_player.die();
-			delete this->_mEnemy[i];
-			this->_mEnemy[i] = 0;
-			return ;
-		}
-		if (this->_mEnemy[i] && this->_mEnemy[i]->getY() > LIMAX_SPACE_Y) {
-			delete this->_mEnemy[i];
-			this->_mEnemy[i] = 0;
-		}
+			if (this->_player.getY() >= this->_mEnemy[i]->getY()
+					&& this->_player.getY() <= (this->_mEnemy[i]->getY() + this->_mEnemy[i]->getSizeY())
+					&& this->_player.getX() >= this->_mEnemy[i]->getX()
+					&& this->_player.getX() <= (this->_mEnemy[i]->getX() + this->_mEnemy[i]->getSizeX()))
+			{
+				this->_player.die();
+				this->_life--;
+				delete this->_mEnemy[i];
+				this->_mEnemy[i] = 0;
+				this->_running = false;
+				std::cout << "\a" << std::endl;
+				return ;
+			}
+			if (this->_mEnemy[i] && this->_mEnemy[i]->getY() > LIMAX_SPACE_Y) {
+				delete this->_mEnemy[i];
+				this->_mEnemy[i] = 0;
+			}
 		}
 	}
 
@@ -178,6 +183,7 @@ void			Game::collision(void) {
 					&& this->_player.getX() <= (this->_enemy[j]->getX() + this->_enemy[j]->getSizeX()))
 			{
 				this->_player.die();
+				this->_life--;
 				delete this->_enemy[j];
 				this->_enemy[j] = 0;
 				this->_running = false;
@@ -222,11 +228,18 @@ void			Game::run(void) {
 	int 	time = 0;
 	int		randAtt = 0;
 
-	this->_player.setX(this->_width / 2);
-	this->_player.setY(LIMAX_SPACE_Y);
-
-	while (1)
+	while (this->_life > 0)
 	{
+		if (this->_life != 3)
+		{
+			move(LIMAX_SPACE_Y / 2, LIMAX_SPACE_X / 2);
+			printw("You lose one life");
+			refresh();
+			std::this_thread::sleep_for(std::chrono::seconds(2));
+		}
+		this->_player.setX(this->_width / 2);
+		this->_player.setY(LIMAX_SPACE_Y);
+		this->_player.born();
 		while (this->_running) {
 
 			this->spawnEnemy();
@@ -291,13 +304,24 @@ void			Game::run(void) {
 			}
 			this->render();
 		}
+		this->_running = true;
 	}
+	this->gameOver();
 }
 
+void			Game::gameOver(void) const {
+
+	move(LIMAX_SPACE_Y / 2, LIMAX_SPACE_X / 2);
+	printw("Game Over");
+	refresh();
+	std::this_thread::sleep_for(std::chrono::seconds(2));
+	endwin();
+}
 
 
 void			Game::render(void) const {
 	clear();
+	this->background();
 	for (int i = 0; i < MAX_MISSIL_PLAYER; i++)
 	{
 		if (this->_mPlayer[i]) {
@@ -338,12 +362,29 @@ void			Game::render(void) const {
 	refresh();
 }
 
+void			Game::background(void) const {
+
+	attron(COLOR_PAIR(2)|A_BOLD);
+	move(LIMAX_SPACE_Y, LIMAX_SPACE_X);
+	printw("               .        o        .                           .");
+	printw("       .                .                         .           ");
+	printw("                                                             .");
+	printw(".                   .                     .                   ");
+	printw("           .                .                                .");
+	printw("       |       .                       .           .          ");
+	printw("      -O-                                                     ");
+	printw("       |       .             .                         .      ");
+	printw("                              .      .                        ");
+	attroff(COLOR_PAIR(2));
+}
+
 void			Game::printInfo(void) const {
 
 	attron(COLOR_PAIR(1));
 	move(LIMAX_SPACE_Y + 1, 0);
 	printw("+------------------+\n");
-	printw("| Score: %d\n", this->_score);	
+	printw("| Score: %d\n", this->_score);
+	printw("| Lifes: %d\n", this->_life);
 	printw("| Time: %ds\n",this->_time);
 	printw("+------------------+");
 	attroff(COLOR_PAIR(1));

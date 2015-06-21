@@ -6,14 +6,14 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 18:49:25 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/20 22:38:16 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/21 02:42:23 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Identity.class.hpp"
 
 /*-------------- Constructors -------------*/
-Identity::Identity(std::string type, int X, int Y) :_type(type),  _X(X), _Y(Y) {
+Identity::Identity(std::string type, int X, int Y) :_type(type),  _X(X), _Y(Y), _alive(true) {
 	//std::cout << "Identity: Default constructor" << std::endl;
 	return ;
 }
@@ -38,6 +38,9 @@ int					Identity::getX(void) const {
 int					Identity::getY(void) const {
 	return (this->_Y);
 }
+bool				Identity::getAlive(void) const {
+	return (this->_alive);
+}
 
 
 /*------------------ Seter -----------------*/
@@ -52,4 +55,9 @@ void				Identity::setY(int Y) {
 
 
 /*------------------ Other -----------------*/
-
+void				Identity::die(void) {
+	this->_alive = false;
+}
+void				Identity::born(void) {
+	this->_alive = true;
+}

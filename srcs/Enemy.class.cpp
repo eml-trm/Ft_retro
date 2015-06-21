@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 15:58:37 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/20 19:59:16 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/21 02:44:40 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 /*-------------- Constructors -------------*/
 Enemy::Enemy(std::string type, int X, int Y, int HP, int value) : AShip(type, X, Y), _HP(HP), _value(value) {
-	std::cout << "Enemy(" << this->_type << "): popped at " << this->_X << "/" << this->_Y << std::endl;
+	//std::cout << "Enemy(" << this->_type << "): popped at " << this->_X << "/" << this->_Y << std::endl;
 
 	return ;
 }
@@ -24,7 +24,7 @@ Enemy::Enemy(std::string type, int X, int Y, int HP, int value) : AShip(type, X,
 
 /*--------------- Destructors --------------*/
 Enemy::~Enemy(void) {
-	std::cout << "Enemy: Destructor" << std::endl;
+	//std::cout << "Enemy: Destructor" << std::endl;
 	return ;
 }
 

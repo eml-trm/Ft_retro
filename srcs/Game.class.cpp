@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/21 01:01:05 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/21 02:26:14 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/21 02:46:06 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ Game::~Game(void) {
 
 /*------------------ Seter -----------------*/
 
+
 /*------------------ Other -----------------*/
 void			Game::init_curses(void)
 {
@@ -56,28 +57,48 @@ void			Game::init_curses(void)
 	keypad(stdscr, TRUE);
 	getmaxyx(stdscr, this->_height, this->_width);
 }
+
+
 void			Game::run(void) {
+
 	int		x;
 	int		y;
+
 	for (int i = 0; i < MAX_ENEMY; i++) {
 		x = rand() % this->_width;
-		y = rand() % (this->_height - 50);
+		y = rand() % (this->_height - 30);
 		this->_enemy[i] = new PetitMechant(x, y);
 	}
+
 	while (this->_running) {
+
 		for (int i = 0; i < MAX_ENEMY; i++) {
-			this->_enemy[i]->setY(this->_enemy[i]->getY() + 1);
+			if (this->_enemy[i]->getAlive())
+				this->_enemy[i]->setY(this->_enemy[i]->getY() + 1);
+			else {
+				delete this->_enemy[i];
+				x = rand() % this->_width;
+				y = 0;
+				this->_enemy[i] = new PetitMechant(x, y);
+			}
 		}
+
 		for (int i = 0; i < 90000000; i++);
 		this->render();
 	}
 }
 
+
 void			Game::render(void) const{
 	clear();
 	for (int i = 0; i < MAX_ENEMY; i++) {
-		move(this->_enemy[i]->getY(), this->_enemy[i]->getX());
-		printw("#");
-		refresh();
+
+		if (this->_enemy[i]->getY() >= this->_height || this->_enemy[i]->getX() >= this->_width)
+			this->_enemy[i]->die();
+		else {
+			move(this->_enemy[i]->getY(), this->_enemy[i]->getX());
+			printw("#");
+			refresh();
+		}
 	}
 }

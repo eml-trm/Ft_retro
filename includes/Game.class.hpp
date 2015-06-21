@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/21 00:58:24 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/21 02:20:56 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/21 02:33:58 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "Character.class.hpp"
 # include <curses.h>
 
-# define	MAX_ENEMY	10
+# define	MAX_ENEMY	30
 
 class	Game
 {

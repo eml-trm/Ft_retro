@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/21 01:01:05 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/21 13:10:04 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/21 14:46:39 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,11 @@ void			Game::collision(void) {
 					this->_mPlayer[i]->die();
 					this->_enemy[j]->die();
 				}
+
+				if (this->_mPlayer[i]->getY() < 0)
+					this->_mPlayer[i]->die();
+				if (this->_enemy[j]->getY() > this->_height - 1)
+					this->_enemy[j]->die();
 			}
 		}
 	}
@@ -90,6 +95,11 @@ void			Game::run(void) {
 
 	int		x;
 	int		y;
+	int		mSpeed = 0;
+	int		enemySpeed = 0;
+
+	this->_player.setX(this->_width / 2);
+	this->_player.setY(this->_height);
 
 	for (int i = 0; i < MAX_ENEMY; i++) {
 		x = rand() % this->_width - 10 + 5;
@@ -105,21 +115,30 @@ void			Game::run(void) {
 
 	while (this->_running) {
 
-		for (int i = 0; i < MAX_ENEMY; i++)
+		if (enemySpeed == 5)
 		{
-			if (this->_enemy[i]->getAlive())
-				this->_enemy[i]->setY(this->_enemy[i]->getY() + 1);
+			enemySpeed = 0;
+			for (int i = 0; i < MAX_ENEMY; i++)
+			{
+				if (this->_enemy[i]->getAlive())
+					this->_enemy[i]->setY(this->_enemy[i]->getY() + 1);
+			}
+			this->collision();
 		}
-		this->collision();
 
-		for (int i = 0; i < MAX_MISSIL_PLAYER; i++)
+		if (mSpeed == 2)
 		{
-			if (this->_mPlayer[i]->getAlive())
-				this->_mPlayer[i]->setY(this->_mPlayer[i]->getY() - 1);
+			mSpeed = 0;
+			for (int i = 0; i < MAX_MISSIL_PLAYER; i++)
+			{
+				if (this->_mPlayer[i]->getAlive())
+					this->_mPlayer[i]->setY(this->_mPlayer[i]->getY() - 1);
+			}
+			this->collision();
 		}
-		this->collision();
-
-		for (int i = 0; i < 120000000; i++);
+		mSpeed++;
+		enemySpeed++;
+		for (int i = 0; i < 10000000; i++);
 		this->render();
 	}
 }
@@ -133,7 +152,6 @@ void			Game::render(void) const {
 		if (this->_mPlayer[i]->getAlive()) {
 			move(this->_mPlayer[i]->getY(), this->_mPlayer[i]->getX());
 			printw("%s", this->_mPlayer[i]->getSkin().c_str());
-			refresh();
 		}
 	}
 
@@ -145,8 +163,13 @@ void			Game::render(void) const {
 				move(this->_enemy[i]->getY() + h, this->_enemy[i]->getX());
 				printw("%s", this->_enemy[i]->getSkin().c_str());
 			}
-
-			refresh();
 		}
 	}
+
+	if (this->_player.getAlive()) {
+		move(this->_player.getY(), this->_player.getX());
+		printw("%s", this->_player.getSkin().c_str());
+	}
+
+	refresh();
 }

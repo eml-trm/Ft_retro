@@ -147,11 +147,18 @@ void			Game::collision(void) {
 								&& this->_mPlayer[i]->getX() + x >= this->_enemy[j]->getX()
 								&& this->_mPlayer[i]->getX() + x <= (this->_enemy[j]->getX() + this->_enemy[j]->getSizeX()))
 						{
-							this->_score += this->_enemy[j]->getValue();
+							if (this->_enemy[j]->getHP() > 20)
+							{
+								this->_enemy[j]->setHP(this->_enemy[j]->getHP() - this->_mPlayer[i]->getDamage());
+							}
+							else
+							{
+								this->_score += this->_enemy[j]->getValue();
+								delete this->_enemy[j];
+								this->_enemy[j] = 0;
+							}
 							delete this->_mPlayer[i];
-							delete this->_enemy[j];
 							this->_mPlayer[i] = 0;
-							this->_enemy[j] = 0;
 							return ;
 						}
 					}

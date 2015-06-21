@@ -43,7 +43,7 @@ class	Game
 		void	collision(void);
 		void	render(void) const;
 		void	printInfo(void) const;
-	//	void	gameOver(void);
+		void	gameOver(void) const ;
 
 
 	private:

@@ -253,13 +253,17 @@ void			Game::run(void) {
 		}
 		this->_running = true;
 	}
+	this->gameOver();
+}
+
+void			Game::gameOver(void) const {
+
 	move(LIMAX_SPACE_Y / 2, LIMAX_SPACE_X / 2);
 	printw("Game Over");
 	refresh();
 	std::this_thread::sleep_for(std::chrono::seconds(2));
 	endwin();
 }
-
 
 
 void			Game::render(void) const {

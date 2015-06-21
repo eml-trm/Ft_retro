@@ -80,6 +80,8 @@ void			Game::init_curses(void)
 	start_color();
 	init_pair(1, COLOR_WHITE, COLOR_BLACK);
 	init_pair(2, COLOR_YELLOW, COLOR_BLACK);
+	init_pair(3, COLOR_RED, COLOR_BLACK);
+	init_pair(4, COLOR_GREEN, COLOR_BLACK);
 }
 
 
@@ -330,6 +332,7 @@ void			Game::gameOver(void) {
 void			Game::render(void) const {
 	clear();
 	this->drawBackground();
+	attron(COLOR_PAIR(2)|A_BOLD);
 	for (int i = 0; i < MAX_MISSIL_PLAYER; i++)
 	{
 		if (this->_mPlayer[i]) {
@@ -349,8 +352,8 @@ void			Game::render(void) const {
 			}
 		}
 	}
-
-
+	attroff(COLOR_PAIR(2));
+	attron(COLOR_PAIR(3));
 	for (int i = 0; i < MAX_ENEMY; i++)
 	{
 		if (this->_enemy[i]) {
@@ -361,13 +364,16 @@ void			Game::render(void) const {
 			}
 		}
 	}
-
+	attroff(COLOR_PAIR(3));
+	attron(COLOR_PAIR(4));
 	if (this->_player.getAlive()) {
 		move(this->_player.getY(), this->_player.getX());
 		printw("%s", this->_player.getSkin().c_str());
 	}
+	attroff(COLOR_PAIR(4));
 	this->printInfo();
 	refresh();
+
 }
 
 void			Game::createBackground(void) {

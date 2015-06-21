@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/21 01:01:05 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/21 18:56:31 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/21 19:10:22 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,19 +85,19 @@ void			Game::handleEvent(int ch) {
 		exit(0);
 	}
 	if (ch == KEY_LEFT) {
-		if (this->_player.getX() > 0)
+		if (this->_player.getX() > LIMIN_SPACE_X)
 			this->_player.setX(this->_player.getX() - 2);
 	}
 	if (ch == KEY_RIGHT) {
-		if (this->_player.getX() < this->_width - 1)
+		if (this->_player.getX() < LIMAX_SPACE_X)
 			this->_player.setX(this->_player.getX() + 2);
 	}
 	if (ch == KEY_DOWN) {
-		if (this->_player.getY() < this->_height - 1)
+		if (this->_player.getY() < LIMAX_SPACE_Y)
 			this->_player.setY(this->_player.getY() + 1);
 	}
 	if (ch == KEY_UP) {
-		if (this->_player.getY() > 0)
+		if (this->_player.getY() > LIMIN_SPACE_X)
 			this->_player.setY(this->_player.getY() - 1);
 	}
 	if (ch == ' ') {
@@ -143,7 +143,7 @@ void			Game::collision(void) {
 			}
 		}
 
-		if (this->_mPlayer[i] && this->_mPlayer[i]->getY() < 1) {
+		if (this->_mPlayer[i] && this->_mPlayer[i]->getY() < LIMIN_SPACE_Y) {
 			delete this->_mPlayer[i];
 			this->_mPlayer[i] = 0;
 		}
@@ -165,7 +165,7 @@ void			Game::collision(void) {
 				this->_running = false;	
 			}
 		}
-		if (this->_enemy[j] && this->_enemy[j]->getY() > this->_height - 5) {
+		if (this->_enemy[j] && this->_enemy[j]->getY() > LIMAX_SPACE_Y) {
 			delete this->_enemy[j];
 			this->_enemy[j] = 0;
 		}
@@ -211,7 +211,7 @@ void			Game::run(void) {
 			std::this_thread::sleep_for(std::chrono::seconds(2));
 		}
 		this->_player.setX(this->_width / 2);
-		this->_player.setY(this->_height - 5);
+		this->_player.setY(LIMAX_SPACE_Y);
 		this->_player.born();
 		while (this->_running) {
 
@@ -296,7 +296,7 @@ void			Game::render(void) const {
 void			Game::printInfo(void) const {
 
 	attron(COLOR_PAIR(1));
-	move(LIMAX_SPACE_Y, 0);
+	move(LIMAX_SPACE_Y + 1, 0);
 	printw("+------------------+\n");
 	printw("| Score: %d\n", this->_score);
 	printw("| Lifes: %d\n", this->_life);

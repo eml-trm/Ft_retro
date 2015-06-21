@@ -13,7 +13,7 @@
 #include "AWeapon.class.hpp"
 
 /* Constructor */
-AWeapon::AWeapon( std::string type, int X, int Y) : Identity(type, X, Y) , _missile(0) {
+AWeapon::AWeapon( std::string type, int X, int Y) : Identity(type, X, Y, "") , _missile(0) {
 		return ;
 }
 

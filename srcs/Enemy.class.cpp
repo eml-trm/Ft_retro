@@ -15,7 +15,7 @@
 #include <stdio.h>
 
 /*-------------- Constructors -------------*/
-Enemy::Enemy(std::string type, int X, int Y, int HP, int value) : AShip(type, X, Y), _HP(HP), _value(value) {
+Enemy::Enemy(std::string type, int X, int Y, int HP, int value, std::string skin) : AShip(type, X, Y, skin), _HP(HP), _value(value) {
 	//std::cout << "Enemy(" << this->_type << "): popped at " << this->_X << "/" << this->_Y << std::endl;
 
 	return ;

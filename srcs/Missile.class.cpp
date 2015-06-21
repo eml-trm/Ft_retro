@@ -13,7 +13,7 @@
 #include "Missile.class.hpp"
 
 /* Constructor */
-Missile::Missile( std::string type, int damage, int X, int Y) : Identity(type, X, Y), _damage(damage) {
+Missile::Missile( std::string type, int damage, int X, int Y ) : Identity(type, X, Y, "|"), _damage(damage) {
 		return ;
 }
 

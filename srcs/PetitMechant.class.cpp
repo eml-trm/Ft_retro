@@ -16,7 +16,7 @@
 #include "PetitWeapon.class.hpp"
 
 /*-------------- Constructors -------------*/
-PetitMechant::PetitMechant(int X, int Y) : Enemy("Petit Mechant", X, Y, 10, 100) {
+PetitMechant::PetitMechant(int X, int Y) : Enemy("Petit Mechant", X, Y, 10, 100, "#") {
 	AWeapon		*petit = new PetitWeapon(X, Y);
 
 	this->_weapon = petit;

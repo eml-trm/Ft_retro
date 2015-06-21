@@ -14,7 +14,7 @@
 #include "Missile.class.hpp"
 
 /* Constructor */
-GrosMissile::GrosMissile( int X, int Y ): Missile("Gros Missile", 50, X, Y) {
+GrosMissile::GrosMissile( int X, int Y): Missile("Gros Missile", 50, X, Y) {
 //		std::cout << "Gros missile was created" << std::endl;
 		return ;
 }

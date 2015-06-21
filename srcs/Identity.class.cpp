@@ -13,12 +13,11 @@
 #include "Identity.class.hpp"
 
 /*-------------- Constructors -------------*/
-Identity::Identity(std::string type, int X, int Y, int sizex, int sizey) :
+Identity::Identity(std::string type, int X, int Y, std::string skin):
 		_type(type),
-		_X(X), _Y(Y),
-		_sizeX(sizex),
-		_sizeY(sizey),
-		_ship("v v\n *");
+		_X(X),
+		_Y(Y),
+		_skin(skin),
 		_alive(true) {
 	//std::cout << "Identity: Default constructor" << std::endl;
 	return ;
@@ -47,11 +46,11 @@ int					Identity::getY(void) const {
 int 				Identity::getSizeX(void) const {
 	return (this->_sizeX);
 }
-int 				Indentity::getSizeY(void) const {
+int 				Identity::getSizeY(void) const {
 	return (this->_sizeY);
 }
-std::string			Identity::getShip(void) const {
-	return (this->_ship);
+std::string			Identity::getSkin(void) const {
+	return (this->_skin);
 }
 bool				Identity::getAlive(void) const {
 	return (this->_alive);

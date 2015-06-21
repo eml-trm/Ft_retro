@@ -15,7 +15,7 @@
 #include "Identity.class.hpp"
 
 /*-------------- Constructors -------------*/
-AShip::AShip(std::string type, int X, int Y) : Identity(type, X, Y), _weapon(0) {
+AShip::AShip(std::string type, int X, int Y, std::string skin) : Identity(type, X, Y, skin), _weapon(0) {
 	//std::cout << "AShip: Default constructor" << std::endl;
 	return ;
 }

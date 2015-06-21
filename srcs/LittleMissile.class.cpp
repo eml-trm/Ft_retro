@@ -14,7 +14,7 @@
 #include "Missile.class.hpp"
 
 /* Constructor */
-LittleMissile::LittleMissile( int X, int Y ): Missile("Little Missile", 10, X, Y) {
+LittleMissile::LittleMissile( int X, int Y): Missile("Little Missile", 10, X, Y) {
 //		std::cout << "little missile was created" << std::endl;
 		return ;
 }

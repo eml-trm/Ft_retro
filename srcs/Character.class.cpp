@@ -15,7 +15,7 @@
 #include "PetitWeapon.class.hpp"
 
 /*-------------------- Constructors ---------------------*/
-Character::Character( int X, int Y ) : AShip("Player", X, Y) {
+Character::Character( int X, int Y ) : AShip("Player", X, Y, "^") {
 
 	AWeapon			*petit = new PetitWeapon(X, Y);
 

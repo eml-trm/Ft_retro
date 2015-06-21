@@ -20,7 +20,7 @@
 class	AShip : public Identity
 {
 	public:
-		AShip(std::string type, int X, int Y);
+		AShip(std::string type, int X, int Y, std::string skin);
 		virtual ~AShip(void);
 
 		AWeapon			* getWeapon(void) const;

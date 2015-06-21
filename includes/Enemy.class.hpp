@@ -19,7 +19,7 @@
 class	Enemy : public AShip
 {
 	public:
-		Enemy(std::string type, int X, int Y, int HP, int value);
+		Enemy(std::string type, int X, int Y, int HP, int value, std::string skin);
 		virtual ~Enemy(void);
 
 		int				getHP(void) const;

@@ -19,7 +19,7 @@ class LittleMissile: public Missile
 {
 
 public:
-	LittleMissile( int x, int y);
+	LittleMissile( int x, int y );
 	virtual ~LittleMissile( void );
 
 

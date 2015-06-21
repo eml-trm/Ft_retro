@@ -15,7 +15,7 @@
 #include "MoyenMissile.class.hpp"
 
 /* Constructor */
-MoyenWeapon::MoyenWeapon( int X, int Y ): AWeapon("Moyen Weapon", X, Y) {
+MoyenWeapon::MoyenWeapon( int X, int Y): AWeapon("Moyen Weapon", X, Y) {
 	Missile 	*Moyen = new MoyenMissile(X, Y);
 	this->_missile = Moyen;
 	return ;

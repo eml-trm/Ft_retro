@@ -75,8 +75,10 @@ void			Game::collision(void) {
 		{
 			if (this->_mPlayer[i]->getAlive() && this->_enemy[j]->getAlive()) {
 
-				if (this->_mPlayer[i]->getY() == this->_enemy[j]->getY() 
-						&& this->_mPlayer[i]->getX() == this->_enemy[j]->getX())
+				if (this->_mPlayer[i]->getY() >= this->_enemy[j]->getY() 
+					&& this->_mPlayer[i]->getY() <= (this->_enemy[j]->getY() + this->_enemy[j]->getSizeY())
+					&& this->_mPlayer[i]->getX() >= this->_enemy[j]->getX()
+					&& this->_mPlayer[i]->getX() <= (this->_enemy[j]->getX() + this->_enemy[j]->getSizeX()))
 				{
 					this->_mPlayer[i]->die();
 					this->_enemy[j]->die();
@@ -108,7 +110,7 @@ void			Game::run(void) {
 	}
 
 	for (int i = 0; i < MAX_MISSIL_PLAYER; i++) {
-		x = rand() % 50 + 1;
+		x = rand() % 50 + 1;  
 		y = rand() % 10 + 15;
 		this->_mPlayer[i] = new LittleMissile(x, y);
 	}

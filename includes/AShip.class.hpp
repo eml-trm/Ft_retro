@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 15:13:17 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/21 13:10:46 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/21 21:28:15 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ class	AShip : public Identity
 		virtual ~AShip(void);
 
 		AWeapon			* getWeapon(void) const;
+		void			setWeapon(AWeapon * weapon);
 
 
 	private:

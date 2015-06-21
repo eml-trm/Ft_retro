@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 15:13:02 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/21 13:10:33 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/21 21:27:58 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ AWeapon				*AShip::getWeapon(void) const {
 
 
 /*------------------ Seter -----------------*/
+void				AShip::setWeapon(AWeapon * weapon) {
+	this->_weapon = weapon;
+}
 
 
 

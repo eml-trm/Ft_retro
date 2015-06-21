@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/21 01:01:05 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/21 20:11:36 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/21 21:44:31 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 #include "LittleMissile.class.hpp"
 #include "MoyenMissile.class.hpp"
 #include "GrosMissile.class.hpp"
+#include "GrosWeapon.class.hpp"
+#include "PetitWeapon.class.hpp"
+#include "MoyenWeapon.class.hpp"
 #include <ctime>
 #include <chrono>
 #include <thread>
@@ -32,7 +35,7 @@ Game::Game(void) :
 	_life(3)
 {
 
-	
+
 	std::srand(std::time(0));
 	for (int i = 0; i < MAX_ENEMY; i++)
 		this->_enemy[i] = 0;
@@ -112,7 +115,13 @@ void			Game::handleEvent(int ch) {
 		{
 			if (!this->_mPlayer[i])
 			{
-				this->_mPlayer[i] = new GrosMissile(this->_player.getX(), this->_player.getY());
+				if (this->_player.getWeapon()->getType() == "Petit Weapon")
+					this->_mPlayer[i] = new LittleMissile(this->_player.getX(), this->_player.getY());
+				if (this->_player.getWeapon()->getType() == "Moyen Weapon")
+					this->_mPlayer[i] = new MoyenMissile(this->_player.getX(), this->_player.getY());
+				if (this->_player.getWeapon()->getType() == "Gros Weapon")
+					this->_mPlayer[i] = new GrosMissile(this->_player.getX(), this->_player.getY());
+
 				this->_mPlayer[i]->setX(this->_mPlayer[i]->getX() - this->_mPlayer[i]->getSizeX() / 2);
 				this->_mPlayer[i]->born();
 				return ;
@@ -235,7 +244,6 @@ void			Game::run(void) {
 	int 	time = 0;
 	int		randAtt = 0;
 
-
 	this->createBackground();
 
 	while (this->_life > 0)
@@ -251,6 +259,19 @@ void			Game::run(void) {
 		this->_player.setY(LIMAX_SPACE_Y);
 		this->_player.born();
 		while (this->_running) {
+
+
+			AWeapon		*petit = new PetitWeapon(this->_player.getX(), this->_player.getY());
+			AWeapon		*moyen = new MoyenWeapon(this->_player.getX(), this->_player.getY());
+			AWeapon		*gros = new GrosWeapon(this->_player.getX(), this->_player.getY());
+
+			if (this->_score > 5000)
+				this->_player.setWeapon(gros);
+			else if (this->_score > 2000)
+				this->_player.setWeapon(moyen);
+			else
+				this->_player.setWeapon(petit);
+			this->_player.getWeapon()->getMissile()->setX(this->_player.getX() - this->_player.getWeapon()->getMissile()->getSizeX() / 2);
 
 			this->spawnEnemy();
 			while ((ch = getch()) != ERR)
@@ -313,6 +334,9 @@ void			Game::run(void) {
 				time = 0;
 			}
 			this->render();
+			delete	petit;
+			delete	moyen;
+			delete	gros;
 		}
 		this->_running = true;
 	}
@@ -422,9 +446,9 @@ void			Game::drawBackground(void) const {
 			}
 		}
 	}
-		// attron(COLOR_PAIR(2)|A_BOLD);
-		// move(LIMAX_SPACE_Y / i, LIMAX_SPACE_X / j);
-		// attroff(COLOR_PAIR(2));
+	// attron(COLOR_PAIR(2)|A_BOLD);
+	// move(LIMAX_SPACE_Y / i, LIMAX_SPACE_X / j);
+	// attroff(COLOR_PAIR(2));
 }
 
 void			Game::printInfo(void) const {

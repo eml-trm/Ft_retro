@@ -20,7 +20,8 @@ Game::Game(void) :
 	_player(0, 0),
 	_running(true),
 	_width(0),
-	_height(0)
+	_height(0),
+	_time(0)
 {
 
 	std::srand(std::time(0));
@@ -65,7 +66,6 @@ void			Game::init_curses(void)
 	keypad(stdscr, true);
 	getmaxyx(stdscr, this->_height, this->_width);
 	start_color();
-	// init_color(COLOR_1, 20, 255, 24);
 	init_pair(1, COLOR_WHITE, COLOR_BLACK);
 }
 
@@ -249,31 +249,13 @@ void			Game::render(void) const {
 
 void			Game::printInfo(void) const {
 
-
-
 	attron(COLOR_PAIR(1));
-	mvprintw(this->_height - 4, this->_height - 80, "-------------------");
-	mvprintw(80, 5, "Score: ");
+	mvprintw(this->_height - 4, this->_height - 80, "+------------------+");
+	mvprintw(80, 3, "| Score: ");
 	mvprintw(80, 12, "%d", this->_score);
-	mvprintw(this->_height - 2, this->_height - 80, "-------------------");
+	mvprintw(81, 3, "| Time: ");
+	mvprintw(81, 12, "%d", this->_time);
+	mvprintw(this->_height - 1, this->_height - 80, "+------------------+");
 	refresh();
 	attroff(COLOR_PAIR(1));
-	
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

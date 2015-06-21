@@ -15,7 +15,7 @@
 
 # include <iostream>
 # include "Identity.class.hpp"
-# include "Character.class.hpp"
+# include "Character.class.hpp":
 # include <curses.h>
 
 # define	MAX_ENEMY			10
@@ -52,6 +52,7 @@ class	Game
 		int				_width;
 		int				_height;
 		int				_score;
+		int 			_time;
 
 		Identity		*_enemy[MAX_ENEMY];
 		Identity		*_mEnemy[MAX_MISSIL_ENEMY];

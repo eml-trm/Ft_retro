@@ -13,7 +13,13 @@
 #include "Identity.class.hpp"
 
 /*-------------- Constructors -------------*/
-Identity::Identity(std::string type, int X, int Y) :_type(type),  _X(X), _Y(Y), _alive(true) {
+Identity::Identity(std::string type, int X, int Y, int sizex, int sizey) :
+		_type(type),
+		_X(X), _Y(Y),
+		_sizeX(sizex),
+		_sizeY(sizey),
+		_ship("v v\n *");
+		_alive(true) {
 	//std::cout << "Identity: Default constructor" << std::endl;
 	return ;
 }
@@ -38,9 +44,19 @@ int					Identity::getX(void) const {
 int					Identity::getY(void) const {
 	return (this->_Y);
 }
+int 				Identity::getSizeX(void) const {
+	return (this->_sizeX);
+}
+int 				Indentity::getSizeY(void) const {
+	return (this->_sizeY);
+}
+std::string			Identity::getShip(void) const {
+	return (this->_ship);
+}
 bool				Identity::getAlive(void) const {
 	return (this->_alive);
 }
+
 
 
 /*------------------ Seter -----------------*/

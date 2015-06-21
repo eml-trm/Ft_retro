@@ -25,6 +25,12 @@
 #include "Missile.class.hpp"
 #include "PetitMechant.class.hpp"
 #include "PetitWeapon.class.hpp"
+#include "MoyenEnemy.class.hpp"
+#include "MoyenWeapon.class.hpp"
+#include "MoyenMissile.class.hpp"
+#include "GrosEnemy.class.hpp"
+#include "GrosWeapon.class.hpp"
+#include "GrosMissile.class.hpp"
 #include "Game.class.hpp"
 
 #endif

@@ -24,6 +24,9 @@ class	Identity
 		std::string	getType(void) const;
 		int			getX(void) const;
 		int			getY(void) const;
+		int 		getSizeX(void) const;
+		int 		getSizeY(void) const;
+		std::string	getShip(void) const;
 		bool		getAlive(void) const;
 
 		void		setX(int X);
@@ -42,6 +45,9 @@ class	Identity
 		std::string	_type;
 		int			_X;
 		int			_Y;
+		int 		_sizeX;
+		int 		_sizeY;
+		std::string _ship;
 		bool		_alive;
 
 };

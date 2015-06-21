@@ -25,6 +25,8 @@ class	Enemy : public AShip
 		int				getHP(void) const;
 		int				getValue(void) const;
 
+		void			setHP( int hp) ;
+
 	private:
 		Enemy(void);
 		Enemy(Enemy const & src);

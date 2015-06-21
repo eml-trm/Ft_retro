@@ -44,7 +44,10 @@ int                 Enemy::getValue(void) const {
 
 /*------------------ Seter -----------------*/
 
-
+void				Enemy::setHP(int hp) {
+	this->_HP = hp;
+	return ;
+}
 
 
 /*------------------ Other -----------------*/

@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PetitMechant.class.cpp                             :+:      :+:    :+:   */
+/*   MoyenMechant.class.cpp                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: etermeau <etermeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/20 16:14:17 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/20 19:58:36 by bsautron         ###   ########.fr       */
+/*   Created: 2015/06/21 09:40:15 by etermeau          #+#    #+#             */
+/*   Updated: 2015/06/21 09:40:16 by etermeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PetitMechant.class.hpp"
+#include "MoyenMechant.class.hpp"
 #include "Enemy.class.hpp"
-#include "LittleMissile.class.hpp"
-#include "PetitWeapon.class.hpp"
+#include "MoyenMissile.class.hpp"
+#include "MoyenWeapon.class.hpp"
 
 /*-------------- Constructors -------------*/
-PetitMechant::PetitMechant(int X, int Y) : Enemy("Petit Mechant", X, Y, 10, 100) {
-	AWeapon		*petit = new PetitWeapon(X, Y);
+MoyenMechant::MoyenMechant(int X, int Y) : Enemy("Moyen Mechant", X, Y, 60, 200) {
+	AWeapon		*moyen = new MoyenWeapon(X, Y);
 
-	this->_weapon = petit;
-	//std::cout << "PetitMechant: Default constructor" << std::endl;
+	this->_weapon = moyen;
+	//std::cout << "MoyenMechant: Default constructor" << std::endl;
 	return ;
 }
 
 /*--------------- Destructors --------------*/
-PetitMechant::~PetitMechant(void) {
-	//std::cout << "PetitMechant: Destructor" << std::endl;
+MoyenMechant::~MoyenMechant(void) {
+	//std::cout << "MoyenMechant: Destructor" << std::endl;
 	return ;
 }
 

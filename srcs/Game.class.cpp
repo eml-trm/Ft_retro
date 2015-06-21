@@ -148,6 +148,20 @@ void			Game::spawnEnemy(void) {
 			}
 		}
 	}
+	for (int j = 0; j < MAX_ENEMY; j++)
+	{
+		if (this->_player.getAlive() && this->_enemy[j]->getAlive()) {
+		
+			if (this->_player.getY() >= this->_enemy[j]->getY()
+				&& this->_player.getY() <= (this->_enemy[j]->getY() + this->_enemy[j]->getSizeY())
+				&& this->_player.getX() >= this->_enemy[j]->getX()
+				&& this->_player.getX() <= (this->_enemy[j]->getX() + this->_enemy[j]->getSizeX()))
+			{
+				this->_player.die();
+				this->_enemy[j]->die();
+			}
+		}
+	}
 }
 
 void			Game::run(void) {
@@ -189,7 +203,7 @@ void			Game::run(void) {
 		}
 		mSpeed++;
 		enemySpeed++;
-		for (int i = 0; i < 4000000; i++);
+		for (int i = 0; i < 12000000; i++);
 		this->render();
 	}
 }
@@ -224,3 +238,8 @@ void			Game::render(void) const {
 
 	refresh();
 }
+
+// void			Game::printfInfo(void) const {
+
+// 	mvprint
+// }

@@ -6,7 +6,7 @@
 #    By: bsautron <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/06/16 11:13:38 by bsautron          #+#    #+#              #
-#    Updated: 2015/06/20 19:42:51 by bsautron         ###   ########.fr        #
+#    Updated: 2015/06/21 02:03:40 by bsautron         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRC_CLASS = Identity.class.cpp \
 			LittleMissile.class.cpp \
 			Missile.class.cpp \
 			PetitWeapon.class.cpp \
+			Game.class.cpp \
 			PetitMechant.class.cpp
 
 SRC = $(SRC_MAIN)
@@ -38,6 +39,7 @@ HEADER = includes/ft_retro.hpp \
 		 includes/LittleMissile.class.hpp \
 		 includes/AWeapon.class.hpp \
 		 includes/PetitWeapon.class.hpp \
+		 includes/Game.class.hpp \
 		 includes/PetitMechant.class.hpp
 
 DIR_HEADERS = -I includes/

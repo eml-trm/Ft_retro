@@ -27,7 +27,8 @@ Game::Game(void) :
 	_running(true),
 	_width(0),
 	_height(0),
-	_time(0)
+	_time(0),
+	_life(3)
 {
 
 	std::srand(std::time(0));
@@ -158,9 +159,10 @@ void			Game::collision(void) {
 					&& this->_player.getX() <= (this->_enemy[j]->getX() + this->_enemy[j]->getSizeX()))
 			{
 				this->_player.die();
+				this->_life--;
 				delete this->_enemy[j];
 				this->_enemy[j] = 0;
-				this->_running = false;
+				this->_running = false;	
 			}
 		}
 		if (this->_enemy[j] && this->_enemy[j]->getY() > this->_height - 5) {
@@ -199,11 +201,18 @@ void			Game::run(void) {
 	int		ch;
 	int 	time = 0;
 
-	this->_player.setX(this->_width / 2);
-	this->_player.setY(this->_height - 5);
-
-	while (1)
+	while (this->_life > 0)
 	{
+		if (this->_life != 3)
+		{
+			move(LIMAX_SPACE_Y / 2, LIMAX_SPACE_X / 2);
+			printw("You lose one life");
+			refresh();
+			std::this_thread::sleep_for(std::chrono::seconds(2));
+		}
+		this->_player.setX(this->_width / 2);
+		this->_player.setY(this->_height - 5);
+		this->_player.born();
 		while (this->_running) {
 
 			this->spawnEnemy();
@@ -242,7 +251,13 @@ void			Game::run(void) {
 			}
 			this->render();
 		}
+		this->_running = true;
 	}
+	move(LIMAX_SPACE_Y / 2, LIMAX_SPACE_X / 2);
+	printw("Game Over");
+	refresh();
+	std::this_thread::sleep_for(std::chrono::seconds(2));
+	endwin();
 }
 
 
@@ -283,7 +298,8 @@ void			Game::printInfo(void) const {
 	attron(COLOR_PAIR(1));
 	move(LIMAX_SPACE_Y, 0);
 	printw("+------------------+\n");
-	printw("| Score: %d\n", this->_score);	
+	printw("| Score: %d\n", this->_score);
+	printw("| Lifes: %d\n", this->_life);
 	printw("| Time: %ds\n",this->_time);
 	printw("+------------------+");
 	attroff(COLOR_PAIR(1));

@@ -23,8 +23,8 @@
 # define	MAX_ENEMY			10
 # define	MAX_MISSIL_ENEMY	30
 # define	MAX_MISSIL_PLAYER	100
-# define	LIMAX_SPACE_Y		this->_height - 5
-# define	LIMAX_SPACE_X		this->_width - 2
+# define	LIMAX_SPACE_Y		(this->_height - 5)
+# define	LIMAX_SPACE_X		(this->_width - 2)
 # define	LIMIN_SPACE_Y		2
 # define	LIMIN_SPACE_X		2
 
@@ -59,6 +59,7 @@ class	Game
 		int				_height;
 		int				_score;
 		int 			_time;
+		int 			_life;
 
 		Enemy			*_enemy[MAX_ENEMY];
 		Missile			*_mEnemy[MAX_MISSIL_ENEMY];

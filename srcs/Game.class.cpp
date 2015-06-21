@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/21 01:01:05 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/21 21:44:31 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/21 22:59:43 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,15 @@
 #include "GrosWeapon.class.hpp"
 #include "PetitWeapon.class.hpp"
 #include "MoyenWeapon.class.hpp"
+#include "Boss.class.hpp"
+#include "BossWeapon.class.hpp"
+#include "BossMissile.class.hpp"
 #include <ctime>
 #include <chrono>
 #include <thread>
+
+bool			Game::_sBoss = false;
+bool			Game::_kBoss = false;
 
 /*-------------- Constructors -------------*/
 Game::Game(void) :
@@ -44,6 +50,7 @@ Game::Game(void) :
 	for (int i = 0; i < MAX_MISSIL_PLAYER; i++) {
 		this->_mPlayer[i] = 0;
 	}
+	this->_boss = 0;
 	std::cout << "Welcome to ft_retro !" << std::endl;
 	init_curses();
 
@@ -121,6 +128,8 @@ void			Game::handleEvent(int ch) {
 					this->_mPlayer[i] = new MoyenMissile(this->_player.getX(), this->_player.getY());
 				if (this->_player.getWeapon()->getType() == "Gros Weapon")
 					this->_mPlayer[i] = new GrosMissile(this->_player.getX(), this->_player.getY());
+				if (this->_player.getWeapon()->getType() == "Boss Weapon")
+					this->_mPlayer[i] = new BossMissile(this->_player.getX(), this->_player.getY());
 
 				this->_mPlayer[i]->setX(this->_mPlayer[i]->getX() - this->_mPlayer[i]->getSizeX() / 2);
 				this->_mPlayer[i]->born();
@@ -160,6 +169,32 @@ void			Game::collision(void) {
 							delete this->_mPlayer[i];
 							this->_mPlayer[i] = 0;
 							return ;
+
+						}
+
+						if (this->_boss)
+						{
+							if (this->_mPlayer[i]->getY() + y >= this->_boss->getY() 
+									&& this->_mPlayer[i]->getY() + y <= (this->_boss->getY() + this->_boss->getSizeY())
+									&& this->_mPlayer[i]->getX() + x >= this->_boss->getX()
+									&& this->_mPlayer[i]->getX() + x <= (this->_boss->getX() + this->_boss->getSizeX()))
+							{
+								if (this->_boss->getHP() > 20)
+								{
+									this->_boss->setHP(this->_boss->getHP() - this->_mPlayer[i]->getDamage());
+								}
+								else
+								{
+									this->_score += this->_boss->getValue();
+									delete this->_boss;
+									this->_boss = 0;
+									Game::_sBoss = true;
+									Game::_kBoss = true;
+								}
+								delete this->_mPlayer[i];
+								this->_mPlayer[i] = 0;
+								return ;
+							}
 						}
 					}
 				}
@@ -218,6 +253,29 @@ void			Game::collision(void) {
 			this->_enemy[j] = 0;
 		}
 	}
+
+	if (this->_boss)
+	{
+		if (this->_player.getY() >= this->_boss->getY()
+				&& this->_player.getY() <= (this->_boss->getY() + this->_boss->getSizeY())
+				&& this->_player.getX() >= this->_boss->getX()
+				&& this->_player.getX() <= (this->_boss->getX() + this->_boss->getSizeX()))
+		{
+			this->_player.die();
+			this->_life--;
+			delete this->_boss;
+			this->_boss = 0;
+			Game::_sBoss = true;
+			this->_running = false;
+			std::cout << "\a" << std::endl;
+		}
+
+		if (this->_boss && this->_boss->getY() > LIMAX_SPACE_Y) {
+			delete this->_boss;
+			this->_boss = 0;
+			Game::_sBoss = true;
+		}
+	}
 }
 
 void			Game::spawnEnemy(void) {
@@ -239,6 +297,8 @@ void			Game::spawnEnemy(void) {
 			}
 		}
 	}
+	if (this->_score > 6000 && !this->_boss && Game::_sBoss == false)
+		this->_boss = new Boss(this->_width / 2, 5);
 }
 
 void			Game::run(void) {
@@ -247,6 +307,7 @@ void			Game::run(void) {
 	int		mSpeedPlayer = 0;
 	int		mSpeedEnemy = 0;
 	int		enemySpeed = 0;
+	int		bossSpeed = 0;
 	int		ch;
 	int 	time = 0;
 	int		randAtt = 0;
@@ -271,6 +332,7 @@ void			Game::run(void) {
 			AWeapon		*petit = new PetitWeapon(this->_player.getX(), this->_player.getY());
 			AWeapon		*moyen = new MoyenWeapon(this->_player.getX(), this->_player.getY());
 			AWeapon		*gros = new GrosWeapon(this->_player.getX(), this->_player.getY());
+			AWeapon		*boss = new BossWeapon(this->_player.getX(), this->_player.getY());
 
 			if (this->_score > 5000)
 				this->_player.setWeapon(gros);
@@ -278,6 +340,8 @@ void			Game::run(void) {
 				this->_player.setWeapon(moyen);
 			else
 				this->_player.setWeapon(petit);
+			if (Game::_kBoss)
+				this->_player.setWeapon(boss);
 			this->_player.getWeapon()->getMissile()->setX(this->_player.getX() - this->_player.getWeapon()->getMissile()->getSizeX() / 2);
 
 			this->spawnEnemy();
@@ -289,7 +353,8 @@ void			Game::run(void) {
 				enemySpeed = 0;
 				for (int i = 0; i < MAX_ENEMY; i++)
 				{
-					if (this->_enemy[i]) {
+					if (this->_enemy[i])
+					{
 						this->_enemy[i]->setY(this->_enemy[i]->getY() + 1);
 						randAtt = rand() % 100;
 						if (randAtt == 0) {
@@ -310,6 +375,23 @@ void			Game::run(void) {
 				this->collision();
 			}
 
+			if (bossSpeed == 25)
+			{
+				bossSpeed = 0;
+				if (this->_boss) {
+					this->_boss->setY(this->_boss->getY() + 1);
+
+					randAtt = rand() % 10;
+					if (randAtt == 0) {
+						for (int j = 0; j < MAX_MISSIL_ENEMY; j++) {
+							if (!this->_mEnemy[j]) {
+								this->_mEnemy[j] = new BossMissile(this->_boss->getX() + this->_boss->getSizeX() / 2 - this->_boss->getWeapon()->getMissile()->getSizeX() / 2, this->_boss->getY());
+								break ;
+							}
+						}
+					}
+				}
+			}
 			if (mSpeedEnemy == 5)
 			{
 				mSpeedEnemy = 0;
@@ -333,6 +415,7 @@ void			Game::run(void) {
 			mSpeedPlayer++;
 			mSpeedEnemy++;
 			enemySpeed++;
+			bossSpeed++;
 			std::this_thread::sleep_for(std::chrono::milliseconds(10));
 			time++;
 			if (time == 100)
@@ -385,6 +468,14 @@ void			Game::render(void) const {
 	}
 	attroff(COLOR_PAIR(2));
 	attron(COLOR_PAIR(3));
+	if (this->_boss) {
+		for (int h = 0; h < this->_boss->getSizeY(); h++)
+		{
+			move(this->_boss->getY() + h, this->_boss->getX());
+			printw("%s", this->_boss->getSkin().c_str());
+		}
+	}
+
 	for (int i = 0; i < MAX_ENEMY; i++)
 	{
 		if (this->_enemy[i]) {

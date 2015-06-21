@@ -6,7 +6,7 @@
 /*   By: etermeau <etermeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/21 22:02:21 by etermeau          #+#    #+#             */
-/*   Updated: 2015/06/21 22:02:22 by etermeau         ###   ########.fr       */
+/*   Updated: 2015/06/21 22:58:50 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "Missile.class.hpp"
 
 /* Constructor */
-BossMissile::BossMissile( int X, int Y): Missile("Boss Missile", 100, X, Y, 4, 3, "0000") {
+BossMissile::BossMissile( int X, int Y): Missile("Boss Missile", 500, X, Y, 4, 3, "0000") {
 //		std::cout << "Boss missile was created" << std::endl;
 		return ;
 }

@@ -6,7 +6,7 @@
 #    By: bsautron <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/06/16 11:13:38 by bsautron          #+#    #+#              #
-#    Updated: 2015/06/21 02:03:40 by bsautron         ###   ########.fr        #
+#    Updated: 2015/06/21 22:12:48 by bsautron         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,9 @@ SRC_CLASS = Identity.class.cpp \
 			PetitMechant.class.cpp \
 			GrosMechant.class.cpp \
 			GrosMissile.class.cpp \
+			Boss.class.cpp \
+			BossWeapon.class.cpp \
+			BossMissile.class.cpp \
 			GrosWeapon.class.cpp \
 			MoyenMechant.class.cpp \
 			MoyenMissile.class.cpp \
@@ -49,6 +52,9 @@ HEADER = includes/ft_retro.hpp \
 		 includes/LittleMissile.class.hpp \
 		 includes/AWeapon.class.hpp \
 		 includes/PetitWeapon.class.hpp \
+		 includes/Boss.class.hpp \
+		 includes/BossWeapon.class.hpp \
+		 includes/BossMissile.class.hpp \
 		 includes/Game.class.hpp \
 		 includes/PetitMechant.class.hpp \
 		 includes/GrosMechant.class.hpp \

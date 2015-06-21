@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/21 00:58:24 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/21 19:09:30 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/21 22:50:46 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,9 @@ class	Game
 		Missile			*_mEnemy[MAX_MISSIL_ENEMY];
 		Missile			*_mPlayer[MAX_MISSIL_PLAYER];
 		char 			_bg[100][100];
-
+		Enemy			*_boss;
+		static bool		_sBoss;
+		static bool		_kBoss;
 
 };
 

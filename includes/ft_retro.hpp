@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 19:38:15 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/21 01:48:04 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/21 13:07:12 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@
 #include "Missile.class.hpp"
 #include "PetitMechant.class.hpp"
 #include "PetitWeapon.class.hpp"
-#include "MoyenEnemy.class.hpp"
+#include "MoyenMechant.class.hpp"
 #include "MoyenWeapon.class.hpp"
 #include "MoyenMissile.class.hpp"
-#include "GrosEnemy.class.hpp"
+#include "GrosMechant.class.hpp"
 #include "GrosWeapon.class.hpp"
 #include "GrosMissile.class.hpp"
 #include "Game.class.hpp"

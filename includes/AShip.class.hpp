@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 15:13:17 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/20 18:53:23 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/21 13:10:46 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 class	AShip : public Identity
 {
 	public:
-		AShip(std::string type, int X, int Y);
+		AShip(std::string type, int X, int Y, int sizex, int sizey);
 		virtual ~AShip(void);
 
 		AWeapon			* getWeapon(void) const;

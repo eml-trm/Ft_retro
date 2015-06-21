@@ -6,7 +6,7 @@
 /*   By: etermeau <etermeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 14:32:27 by etermeau          #+#    #+#             */
-/*   Updated: 2015/06/20 19:28:21 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/21 13:13:18 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "PetitWeapon.class.hpp"
 
 /*-------------------- Constructors ---------------------*/
-Character::Character( int X, int Y ) : AShip("Player", X, Y) {
+Character::Character( int X, int Y ) : AShip("Player", X, Y, 1, 1) {
 
 	AWeapon			*petit = new PetitWeapon(X, Y);
 

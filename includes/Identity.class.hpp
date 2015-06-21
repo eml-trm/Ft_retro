@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 18:48:11 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/21 02:41:33 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/21 13:17:14 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 class	Identity
 {
 	public:
-		Identity(std::string type, int X, int Y);
+		Identity(std::string type, int X, int Y, int sizex, int sizey);
 		virtual ~Identity(void);
 
 		std::string	getType(void) const;
@@ -26,7 +26,7 @@ class	Identity
 		int			getY(void) const;
 		int 		getSizeX(void) const;
 		int 		getSizeY(void) const;
-		std::string	getShip(void) const;
+		std::string	getSkin(void) const;
 		bool		getAlive(void) const;
 
 		void		setX(int X);
@@ -47,7 +47,7 @@ class	Identity
 		int			_Y;
 		int 		_sizeX;
 		int 		_sizeY;
-		std::string _ship;
+		std::string _skin;
 		bool		_alive;
 
 };

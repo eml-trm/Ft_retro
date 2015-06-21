@@ -6,7 +6,7 @@
 /*   By: etermeau <etermeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/21 09:40:15 by etermeau          #+#    #+#             */
-/*   Updated: 2015/06/21 09:40:16 by etermeau         ###   ########.fr       */
+/*   Updated: 2015/06/21 13:15:36 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "MoyenWeapon.class.hpp"
 
 /*-------------- Constructors -------------*/
-MoyenMechant::MoyenMechant(int X, int Y) : Enemy("Moyen Mechant", X, Y, 60, 200) {
+MoyenMechant::MoyenMechant(int X, int Y) : Enemy("Moyen Mechant", X, Y, 2, 2, 60, 200) {
 	AWeapon		*moyen = new MoyenWeapon(X, Y);
 
 	this->_weapon = moyen;

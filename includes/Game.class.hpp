@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/21 00:58:24 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/21 15:40:04 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/21 16:45:00 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class	Game
 		virtual ~Game(void);
 
 		void	handleEvent(int ch);
-		//void	addEnemy(void);
+		void	spawnEnemy(void);
 		void	init_curses(void);
 		void	run(void);
 		void	collision(void);

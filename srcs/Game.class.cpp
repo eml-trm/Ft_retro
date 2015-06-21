@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/21 01:01:05 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/21 14:46:39 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/21 15:41:54 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ Game::Game(void) :
 		this->_enemy[i] = 0;
 	for (int i = 0; i < MAX_MISSIL_ENEMY; i++)
 		this->_mEnemy[i] = 0;
-	for (int i = 0; i < MAX_MISSIL_PLAYER; i++)
-		this->_mPlayer[i] = 0;
+	for (int i = 0; i < MAX_MISSIL_PLAYER; i++) {
+		this->_mPlayer[i] = new LittleMissile(0, 0);
+		this->_mPlayer[i]->die();
+	}
 	std::cout << "Welcome to ft_retro !" << std::endl;
 	init_curses();
 	return ;
@@ -60,12 +62,40 @@ void			Game::init_curses(void)
 	initscr();
 	cbreak();
 	noecho();
-	//nodelay(stdscr);
+	nodelay(stdscr, true);
 	curs_set(0);
-	keypad(stdscr, TRUE);
+	keypad(stdscr, true);
 	getmaxyx(stdscr, this->_height, this->_width);
 }
 
+
+void			Game::handleEvent(int ch) {
+	if (ch == 27) {
+		this->_running = false;
+		endwin();
+		exit(0);
+	}
+	if (ch == KEY_LEFT)
+		this->_player.setX(this->_player.getX() - 1);
+	if (ch == KEY_RIGHT)
+		this->_player.setX(this->_player.getX() + 1);
+	if (ch == KEY_DOWN)
+		this->_player.setY(this->_player.getY() + 1);
+	if (ch == KEY_UP)
+		this->_player.setY(this->_player.getY() - 1);
+	if (ch == ' ') {
+		for (int i = 0; i < MAX_MISSIL_PLAYER; i++)
+		{
+			if (!this->_mPlayer[i]->getAlive())
+			{
+				this->_mPlayer[i]->setX(this->_player.getX());
+				this->_mPlayer[i]->setY(this->_player.getY());
+				this->_mPlayer[i]->born();
+				return ;
+			}
+		}
+	}
+}
 
 void			Game::collision(void) {
 
@@ -99,24 +129,22 @@ void			Game::run(void) {
 	int		y;
 	int		mSpeed = 0;
 	int		enemySpeed = 0;
+	int		ch;
 
 	this->_player.setX(this->_width / 2);
-	this->_player.setY(this->_height);
+	this->_player.setY(this->_height - 2);
 
 	for (int i = 0; i < MAX_ENEMY; i++) {
-		x = rand() % this->_width - 10 + 5;
+		x = rand() % (this->_width - 10) + 5;
 		y = rand() % 10 + 1;
 		this->_enemy[i] = new GrosMechant(x, y);
 	}
-
-	for (int i = 0; i < MAX_MISSIL_PLAYER; i++) {
-		x = rand() % 50 + 1;  
-		y = rand() % 10 + 15;
-		this->_mPlayer[i] = new LittleMissile(x, y);
-	}
-
 	while (this->_running) {
 
+		while ((ch = getch()) != ERR)
+		{
+			this->handleEvent(ch);
+		}
 		if (enemySpeed == 5)
 		{
 			enemySpeed = 0;
@@ -128,7 +156,7 @@ void			Game::run(void) {
 			this->collision();
 		}
 
-		if (mSpeed == 2)
+		if (mSpeed == 1)
 		{
 			mSpeed = 0;
 			for (int i = 0; i < MAX_MISSIL_PLAYER; i++)
@@ -140,7 +168,7 @@ void			Game::run(void) {
 		}
 		mSpeed++;
 		enemySpeed++;
-		for (int i = 0; i < 10000000; i++);
+		for (int i = 0; i < 4000000; i++);
 		this->render();
 	}
 }

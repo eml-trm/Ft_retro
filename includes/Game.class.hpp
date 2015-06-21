@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/21 00:58:24 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/21 12:21:43 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/21 15:40:04 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 # define	MAX_ENEMY			10
 # define	MAX_MISSIL_ENEMY	30
-# define	MAX_MISSIL_PLAYER	10
+# define	MAX_MISSIL_PLAYER	100
 
 class	Game
 {
@@ -28,7 +28,7 @@ class	Game
 		Game(void);
 		virtual ~Game(void);
 
-		//void	handleEvent(int ch);
+		void	handleEvent(int ch);
 		//void	addEnemy(void);
 		void	init_curses(void);
 		void	run(void);

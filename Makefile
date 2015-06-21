@@ -25,7 +25,17 @@ SRC_CLASS = Identity.class.cpp \
 			Missile.class.cpp \
 			PetitWeapon.class.cpp \
 			Game.class.cpp \
-			PetitMechant.class.cpp
+			PetitMechant.class.cpp \
+			GrosMechant.class.cpp \
+			GrosMissile.class.cpp \
+			GrosWeapon.class.cpp \
+			MoyenMechant.class.cpp \
+			MoyenMissile.class.cpp \
+			MoyenWeapon.class.cpp
+
+
+
+
 
 SRC = $(SRC_MAIN)
 SRC += $(addprefix srcs/, $(SRC_CLASS))
@@ -40,7 +50,13 @@ HEADER = includes/ft_retro.hpp \
 		 includes/AWeapon.class.hpp \
 		 includes/PetitWeapon.class.hpp \
 		 includes/Game.class.hpp \
-		 includes/PetitMechant.class.hpp
+		 includes/PetitMechant.class.hpp \
+		 includes/GrosMechant.class.hpp \
+		 includes/MoyenMechant.class.hpp \
+		 includes/GrosMissile.class.hpp \
+		 includes/MoyenMissile.class.hpp \
+		 includes/GrosWeapon.class.hpp \
+		 includes/MoyenWeapon.class.hpp
 
 DIR_HEADERS = -I includes/
 

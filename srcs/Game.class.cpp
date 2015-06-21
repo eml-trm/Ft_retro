@@ -65,6 +65,9 @@ void			Game::init_curses(void)
 	curs_set(0);
 	keypad(stdscr, true);
 	getmaxyx(stdscr, this->_height, this->_width);
+	start_color();
+	// init_color(COLOR_1, 20, 255, 24);
+	init_pair(1, COLOR_WHITE, COLOR_BLACK);
 }
 
 
@@ -221,11 +224,37 @@ void			Game::render(void) const {
 		move(this->_player.getY(), this->_player.getX());
 		printw("%s", this->_player.getSkin().c_str());
 	}
-
+	this->printInfo();
 	refresh();
 }
 
-// void			Game::printInfo(void) const {
+void			Game::printInfo(void) const {
 
-// 	mvprintw(30, 30, "Score: ");
-// }
+
+
+	attron(COLOR_PAIR(1));
+	mvprintw(this->_height - 4, this->_height - 80, "-------------------");
+	mvprintw(80, 5, "Score: ");
+	mvprintw(80, 12, "%d", this->_score);
+	mvprintw(this->_height - 2, this->_height - 80, "-------------------");
+	refresh();
+	attroff(COLOR_PAIR(1));
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

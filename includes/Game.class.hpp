@@ -22,6 +22,8 @@
 # define	MAX_MISSIL_ENEMY	30
 # define	MAX_MISSIL_PLAYER	100
 
+# define	COLOR_1				20
+
 class	Game
 {
 	public:
@@ -34,7 +36,7 @@ class	Game
 		void	run(void);
 		void	collision(void);
 		void	render(void) const;
-		// void	printInfo(void) const;
+		void	printInfo(void) const;
 	//	void	gameOver(void);
 
 

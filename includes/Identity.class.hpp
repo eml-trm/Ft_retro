@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 18:48:11 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/21 02:41:33 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/21 13:23:21 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 class	Identity
 {
 	public:
-		Identity(std::string type, int X, int Y, std::string skin);
+		Identity(std::string type, int X, int Y, int sizex, int sizey, std::string skin);
 		virtual ~Identity(void);
 
 		std::string	getType(void) const;

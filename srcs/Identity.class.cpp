@@ -6,17 +6,19 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 18:49:25 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/21 11:16:03 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/21 13:24:14 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Identity.class.hpp"
 
 /*-------------- Constructors -------------*/
-Identity::Identity(std::string type, int X, int Y, std::string skin):
+Identity::Identity(std::string type, int X, int Y, int sizex, int sizey, std::string skin):
 		_type(type),
 		_X(X),
-		_Y(Y),
+		 _Y(Y),
+		_sizeX(sizex),
+		_sizeY(sizey),
 		_skin(skin),
 		_alive(true) {
 	//std::cout << "Identity: Default constructor" << std::endl;

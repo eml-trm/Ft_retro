@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 15:13:02 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/20 19:12:14 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/21 13:10:33 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "Identity.class.hpp"
 
 /*-------------- Constructors -------------*/
-AShip::AShip(std::string type, int X, int Y, std::string skin) : Identity(type, X, Y, skin), _weapon(0) {
+AShip::AShip(std::string type, int X, int Y, int sizex, int sizey, std::string skin) : Identity(type, X, Y, sizex, sizey,skin), _weapon(0) {
 	//std::cout << "AShip: Default constructor" << std::endl;
 	return ;
 }

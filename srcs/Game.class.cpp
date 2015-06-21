@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/21 01:01:05 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/21 12:22:52 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/21 13:10:04 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,13 +104,12 @@ void			Game::run(void) {
 
 	while (this->_running) {
 
+		for (int i = 0; i < MAX_ENEMY; i++)
+		{
+			if (this->_enemy[i]->getAlive())
+				this->_enemy[i]->setY(this->_enemy[i]->getY() + 1);
+		}
 		this->collision();
-		/*for (int i = 0; i < MAX_ENEMY; i++)
-		  {
-		  if (this->_enemy[i]->getAlive())
-		  this->_enemy[i]->setY(this->_enemy[i]->getY() + 1);
-		  }
-		  this->collision();*/
 
 		for (int i = 0; i < MAX_MISSIL_PLAYER; i++)
 		{

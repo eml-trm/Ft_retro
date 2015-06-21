@@ -6,14 +6,16 @@
 /*   By: etermeau <etermeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 15:44:14 by etermeau          #+#    #+#             */
-/*   Updated: 2015/06/20 19:15:29 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/21 13:23:10 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Missile.class.hpp"
 
 /* Constructor */
-Missile::Missile( std::string type, int damage, int X, int Y ) : Identity(type, X, Y, "|"), _damage(damage) {
+
+
+Missile::Missile( std::string type, int damage, int X, int Y) : Identity(type, X, Y, 1, 1, "|"), _damage(damage) {
 		return ;
 }
 

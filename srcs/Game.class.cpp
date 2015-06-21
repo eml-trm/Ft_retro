@@ -6,12 +6,14 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/21 01:01:05 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/21 02:46:06 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/21 12:22:52 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Game.class.hpp"
 #include "PetitMechant.class.hpp"
+#include "LittleMissile.class.hpp"
+#include <ctime>
 
 /*-------------- Constructors -------------*/
 Game::Game(void) :
@@ -21,8 +23,13 @@ Game::Game(void) :
 	_height(0)
 {
 
+	std::srand(std::time(0));
 	for (int i = 0; i < MAX_ENEMY; i++)
 		this->_enemy[i] = 0;
+	for (int i = 0; i < MAX_MISSIL_ENEMY; i++)
+		this->_mEnemy[i] = 0;
+	for (int i = 0; i < MAX_MISSIL_PLAYER; i++)
+		this->_mPlayer[i] = 0;
 	std::cout << "Welcome to ft_retro !" << std::endl;
 	init_curses();
 	return ;
@@ -59,43 +66,80 @@ void			Game::init_curses(void)
 }
 
 
+void			Game::collision(void) {
+
+	for (int i = 0; i < MAX_MISSIL_PLAYER; i++)
+	{
+		for (int j = 0; j < MAX_ENEMY; j++)
+		{
+			if (this->_mPlayer[i]->getAlive() && this->_enemy[j]->getAlive()) {
+
+				if (this->_mPlayer[i]->getY() == this->_enemy[j]->getY() 
+						&& this->_mPlayer[i]->getX() == this->_enemy[j]->getX())
+				{
+					this->_mPlayer[i]->die();
+					this->_enemy[j]->die();
+				}
+			}
+		}
+	}
+}
+
 void			Game::run(void) {
 
 	int		x;
 	int		y;
 
 	for (int i = 0; i < MAX_ENEMY; i++) {
-		x = rand() % this->_width;
-		y = rand() % (this->_height - 30);
+		x = rand() % 3 + 1;
+		y = rand() % 10 + 1;
 		this->_enemy[i] = new PetitMechant(x, y);
+	}
+
+	for (int i = 0; i < MAX_MISSIL_PLAYER; i++) {
+		x = rand() % 3 + 1;
+		y = rand() % 10 + 15;
+		this->_mPlayer[i] = new LittleMissile(x, y);
 	}
 
 	while (this->_running) {
 
-		for (int i = 0; i < MAX_ENEMY; i++) {
-			if (this->_enemy[i]->getAlive())
-				this->_enemy[i]->setY(this->_enemy[i]->getY() + 1);
-			else {
-				delete this->_enemy[i];
-				x = rand() % this->_width;
-				y = 0;
-				this->_enemy[i] = new PetitMechant(x, y);
-			}
-		}
+		this->collision();
+		/*for (int i = 0; i < MAX_ENEMY; i++)
+		  {
+		  if (this->_enemy[i]->getAlive())
+		  this->_enemy[i]->setY(this->_enemy[i]->getY() + 1);
+		  }
+		  this->collision();*/
 
-		for (int i = 0; i < 90000000; i++);
+		for (int i = 0; i < MAX_MISSIL_PLAYER; i++)
+		{
+			if (this->_mPlayer[i]->getAlive())
+				this->_mPlayer[i]->setY(this->_mPlayer[i]->getY() - 1);
+		}
+		this->collision();
+
+		for (int i = 0; i < 120000000; i++);
 		this->render();
 	}
 }
 
 
-void			Game::render(void) const{
-	clear();
-	for (int i = 0; i < MAX_ENEMY; i++) {
 
-		if (this->_enemy[i]->getY() >= this->_height || this->_enemy[i]->getX() >= this->_width)
-			this->_enemy[i]->die();
-		else {
+void			Game::render(void) const {
+	clear();
+	for (int i = 0; i < MAX_MISSIL_PLAYER; i++)
+	{
+		if (this->_mPlayer[i]->getAlive()) {
+			move(this->_mPlayer[i]->getY(), this->_mPlayer[i]->getX());
+			printw("|");
+			refresh();
+		}
+	}
+
+	for (int i = 0; i < MAX_ENEMY; i++)
+	{
+		if (this->_enemy[i]->getAlive()) {
 			move(this->_enemy[i]->getY(), this->_enemy[i]->getX());
 			printw("#");
 			refresh();

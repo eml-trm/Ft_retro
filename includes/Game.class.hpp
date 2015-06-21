@@ -15,7 +15,7 @@
 
 # include <iostream>
 # include "Identity.class.hpp"
-# include "Character.class.hpp":
+# include "Character.class.hpp"
 # include <curses.h>
 
 # define	MAX_ENEMY			10

@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/21 01:01:05 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/21 19:10:22 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/21 20:03:45 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ void			Game::init_curses(void)
 	init_pair(1, COLOR_WHITE, COLOR_BLACK);
 }
 
-#include <stdio.h>
 
 void			Game::handleEvent(int ch) {
 	if (ch == 27) {
@@ -125,18 +124,18 @@ void			Game::collision(void) {
 				{
 					for (int x = 0; x < this->_mPlayer[i]->getSizeX(); x++)
 					{
-							if (this->_mPlayer[i]->getY() + y >= this->_enemy[j]->getY() 
-									&& this->_mPlayer[i]->getY() + y <= (this->_enemy[j]->getY() + this->_enemy[j]->getSizeY())
-									&& this->_mPlayer[i]->getX() + x >= this->_enemy[j]->getX()
-									&& this->_mPlayer[i]->getX() + x <= (this->_enemy[j]->getX() + this->_enemy[j]->getSizeX()))
-							{
-								this->_score += this->_enemy[j]->getValue();
-								delete this->_mPlayer[i];
-								delete this->_enemy[j];
-								this->_mPlayer[i] = 0;
-								this->_enemy[j] = 0;
-								return ;
-							}
+						if (this->_mPlayer[i]->getY() + y >= this->_enemy[j]->getY() 
+								&& this->_mPlayer[i]->getY() + y <= (this->_enemy[j]->getY() + this->_enemy[j]->getSizeY())
+								&& this->_mPlayer[i]->getX() + x >= this->_enemy[j]->getX()
+								&& this->_mPlayer[i]->getX() + x <= (this->_enemy[j]->getX() + this->_enemy[j]->getSizeX()))
+						{
+							this->_score += this->_enemy[j]->getValue();
+							delete this->_mPlayer[i];
+							delete this->_enemy[j];
+							this->_mPlayer[i] = 0;
+							this->_enemy[j] = 0;
+							return ;
+						}
 					}
 				}
 			}
@@ -145,6 +144,27 @@ void			Game::collision(void) {
 		if (this->_mPlayer[i] && this->_mPlayer[i]->getY() < LIMIN_SPACE_Y) {
 			delete this->_mPlayer[i];
 			this->_mPlayer[i] = 0;
+		}
+	}
+
+	for (int i = 0; i < MAX_MISSIL_ENEMY; i++)
+	{
+		if (this->_mEnemy[i])
+		{
+		if (this->_player.getY() >= this->_mEnemy[i]->getY()
+				&& this->_player.getY() <= (this->_mEnemy[i]->getY() + this->_mEnemy[i]->getSizeY())
+				&& this->_player.getX() >= this->_mEnemy[i]->getX()
+				&& this->_player.getX() <= (this->_mEnemy[i]->getX() + this->_mEnemy[i]->getSizeX()))
+		{
+			this->_player.die();
+			delete this->_mEnemy[i];
+			this->_mEnemy[i] = 0;
+			return ;
+		}
+		if (this->_mEnemy[i] && this->_mEnemy[i]->getY() > LIMAX_SPACE_Y) {
+			delete this->_mEnemy[i];
+			this->_mEnemy[i] = 0;
+		}
 		}
 	}
 
@@ -161,6 +181,7 @@ void			Game::collision(void) {
 				delete this->_enemy[j];
 				this->_enemy[j] = 0;
 				this->_running = false;
+				std::cout << "\a" << std::endl;
 			}
 		}
 		if (this->_enemy[j] && this->_enemy[j]->getY() > LIMAX_SPACE_Y) {
@@ -194,10 +215,12 @@ void			Game::spawnEnemy(void) {
 void			Game::run(void) {
 
 	//int		x;
-	int		mSpeed = 0;
+	int		mSpeedPlayer = 0;
+	int		mSpeedEnemy = 0;
 	int		enemySpeed = 0;
 	int		ch;
 	int 	time = 0;
+	int		randAtt = 0;
 
 	this->_player.setX(this->_width / 2);
 	this->_player.setY(LIMAX_SPACE_Y);
@@ -215,15 +238,40 @@ void			Game::run(void) {
 				enemySpeed = 0;
 				for (int i = 0; i < MAX_ENEMY; i++)
 				{
-					if (this->_enemy[i])
+					if (this->_enemy[i]) {
 						this->_enemy[i]->setY(this->_enemy[i]->getY() + 1);
+						randAtt = rand() % 100;
+						if (randAtt == 0) {
+							for (int j = 0; j < MAX_MISSIL_ENEMY; j++) {
+								if (!this->_mEnemy[j]) {
+									if (this->_enemy[i]->getWeapon()->getMissile()->getType() == "Little Missile")
+										this->_mEnemy[j] = new LittleMissile(this->_enemy[i]->getX(), this->_enemy[i]->getY());
+									if (this->_enemy[i]->getWeapon()->getMissile()->getType() == "Moyen Missile")
+										this->_mEnemy[j] = new MoyenMissile(this->_enemy[i]->getX(), this->_enemy[i]->getY());
+									if (this->_enemy[i]->getWeapon()->getMissile()->getType() == "Gros Missile")
+										this->_mEnemy[j] = new GrosMissile(this->_enemy[i]->getX(), this->_enemy[i]->getY());
+									break ;
+								}
+							}
+						}
+					}
 				}
 				this->collision();
 			}
 
-			if (mSpeed == 1)
+			if (mSpeedEnemy == 5)
 			{
-				mSpeed = 0;
+				mSpeedEnemy = 0;
+				for (int i = 0; i < MAX_MISSIL_ENEMY; i++)
+				{
+					if (this->_mEnemy[i])
+						this->_mEnemy[i]->setY(this->_mEnemy[i]->getY() + 1);
+				}
+			}
+
+			if (mSpeedPlayer == 1)
+			{
+				mSpeedPlayer = 0;
 				for (int i = 0; i < MAX_MISSIL_PLAYER; i++)
 				{
 					if (this->_mPlayer[i])
@@ -231,7 +279,8 @@ void			Game::run(void) {
 				}
 				this->collision();
 			}
-			mSpeed++;
+			mSpeedPlayer++;
+			mSpeedEnemy++;
 			enemySpeed++;
 			std::this_thread::sleep_for(std::chrono::milliseconds(10));
 			time++;
@@ -258,6 +307,17 @@ void			Game::render(void) const {
 			}
 		}
 	}
+
+	for (int i = 0; i < MAX_MISSIL_ENEMY; i++)
+	{
+		if (this->_mEnemy[i]) {
+			for (int h = 0; h < this->_mEnemy[i]->getSizeY(); h++) {
+				move(this->_mEnemy[i]->getY() + h, this->_mEnemy[i]->getX());
+				printw("%s", this->_mEnemy[i]->getSkin().c_str());
+			}
+		}
+	}
+
 
 	for (int i = 0; i < MAX_ENEMY; i++)
 	{

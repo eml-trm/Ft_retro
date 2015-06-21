@@ -15,7 +15,6 @@
 #include "GrosMechant.class.hpp"
 #include "LittleMissile.class.hpp"
 #include <ctime>
-
 /*-------------- Constructors -------------*/
 Game::Game(void) :
 	_player(0, 0),
@@ -150,7 +149,7 @@ void			Game::spawnEnemy(void) {
 	}
 	for (int j = 0; j < MAX_ENEMY; j++)
 	{
-		if (this->_player.getAlive() && this->_enemy[j]->getAlive()) {
+		if (this->_player.getAlive() && this->_enemy[j]) {
 		
 			if (this->_player.getY() >= this->_enemy[j]->getY()
 				&& this->_player.getY() <= (this->_enemy[j]->getY() + this->_enemy[j]->getSizeY())
@@ -239,7 +238,7 @@ void			Game::render(void) const {
 	refresh();
 }
 
-// void			Game::printfInfo(void) const {
+// void			Game::printInfo(void) const {
 
-// 	mvprint
+// 	mvprintw(30, 30, "Score: ");
 // }

@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/21 01:01:05 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/21 18:32:17 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/21 18:56:31 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,7 @@ void			Game::collision(void) {
 				this->_running = false;
 			}
 		}
-		if (this->_enemy[j] && this->_enemy[j]->getY() > this->_height - 3) {
+		if (this->_enemy[j] && this->_enemy[j]->getY() > this->_height - 5) {
 			delete this->_enemy[j];
 			this->_enemy[j] = 0;
 		}
@@ -199,7 +199,7 @@ void			Game::run(void) {
 	int		ch;
 
 	this->_player.setX(this->_width / 2);
-	this->_player.setY(this->_height - 2);
+	this->_player.setY(this->_height - 5);
 
 	while (1)
 	{
@@ -274,12 +274,9 @@ void			Game::render(void) const {
 void			Game::printInfo(void) const {
 
 	attron(COLOR_PAIR(1));
-	mvprintw(this->_height - 4, this->_height - 80, "+------------------+");
-	mvprintw(80, 3, "| Score: ");
-	mvprintw(80, 12, "%d", this->_score);
-	mvprintw(81, 3, "| Time: ");
-	mvprintw(81, 12, "%d", this->_time);
-	mvprintw(this->_height - 1, this->_height - 80, "+------------------+");
-	refresh();
+	move(LIMAX_SPACE_Y, 0);
+	printw("+------------------+\n");
+	printw("| Score: %d\n", this->_score);
+	printw("+------------------+");
 	attroff(COLOR_PAIR(1));
 }

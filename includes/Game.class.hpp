@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/21 00:58:24 by bsautron          #+#    #+#             */
-/*   Updated: 2015/06/21 18:32:03 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/06/21 18:55:38 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,16 @@
 # include "Identity.class.hpp"
 # include "Character.class.hpp"
 # include "Enemy.class.hpp"
-# include "Character.class.hpp":
+# include "Character.class.hpp"
 # include <curses.h>
 
 # define	MAX_ENEMY			10
 # define	MAX_MISSIL_ENEMY	30
 # define	MAX_MISSIL_PLAYER	100
+# define	LIMAX_SPACE_Y		this->_height - 4
+# define	LIMAX_SPACE_X		this->_width - 2
+# define	LIMIN_SPACE_Y		2
+# define	LIMIN_SPACE_X		2
 
 # define	COLOR_1				20
 

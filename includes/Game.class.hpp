@@ -18,7 +18,7 @@
 # include "Character.class.hpp"
 # include <curses.h>
 
-# define	MAX_ENEMY			20
+# define	MAX_ENEMY			5
 # define	MAX_MISSIL_ENEMY	30
 # define	MAX_MISSIL_PLAYER	10
 

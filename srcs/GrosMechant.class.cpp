@@ -16,7 +16,7 @@
 #include "GrosWeapon.class.hpp"
 
 /*-------------- Constructors -------------*/
-GrosMechant::GrosMechant(int X, int Y) : Enemy("Gros Mechant", X, Y, 3, 3, 150, 500, "###\n###\n###") {
+GrosMechant::GrosMechant(int X, int Y) : Enemy("Gros Mechant", X, Y, 3, 3, 150, 500, "###") {
 	AWeapon		*Gros = new GrosWeapon(X, Y);
 
 	this->_weapon = Gros;

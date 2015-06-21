@@ -12,6 +12,7 @@
 
 #include "Game.class.hpp"
 #include "PetitMechant.class.hpp"
+#include "GrosMechant.class.hpp"
 #include "LittleMissile.class.hpp"
 #include <ctime>
 
@@ -91,13 +92,13 @@ void			Game::run(void) {
 	int		y;
 
 	for (int i = 0; i < MAX_ENEMY; i++) {
-		x = rand() % 3 + 1;
+		x = rand() % this->_width - 10 + 5;
 		y = rand() % 10 + 1;
-		this->_enemy[i] = new PetitMechant(x, y);
+		this->_enemy[i] = new GrosMechant(x, y);
 	}
 
 	for (int i = 0; i < MAX_MISSIL_PLAYER; i++) {
-		x = rand() % 3 + 1;
+		x = rand() % 50 + 1;
 		y = rand() % 10 + 15;
 		this->_mPlayer[i] = new LittleMissile(x, y);
 	}
@@ -131,7 +132,7 @@ void			Game::render(void) const {
 	{
 		if (this->_mPlayer[i]->getAlive()) {
 			move(this->_mPlayer[i]->getY(), this->_mPlayer[i]->getX());
-			printw("|");
+			printw("%s", this->_mPlayer[i]->getSkin().c_str());
 			refresh();
 		}
 	}
@@ -139,8 +140,12 @@ void			Game::render(void) const {
 	for (int i = 0; i < MAX_ENEMY; i++)
 	{
 		if (this->_enemy[i]->getAlive()) {
-			move(this->_enemy[i]->getY(), this->_enemy[i]->getX());
-			printw("#");
+			for (int h = 0; h < this->_enemy[i]->getSizeY(); h++)
+			{
+				move(this->_enemy[i]->getY() + h, this->_enemy[i]->getX());
+				printw("%s", this->_enemy[i]->getSkin().c_str());
+			}
+
 			refresh();
 		}
 	}

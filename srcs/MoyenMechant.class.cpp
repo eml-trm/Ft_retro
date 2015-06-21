@@ -16,7 +16,7 @@
 #include "MoyenWeapon.class.hpp"
 
 /*-------------- Constructors -------------*/
-MoyenMechant::MoyenMechant(int X, int Y) : Enemy("Moyen Mechant", X, Y, 2, 2, 60, 200, "##\n##") {
+MoyenMechant::MoyenMechant(int X, int Y) : Enemy("Moyen Mechant", X, Y, 2, 2, 60, 200, "##") {
 	AWeapon		*moyen = new MoyenWeapon(X, Y);
 
 	this->_weapon = moyen;

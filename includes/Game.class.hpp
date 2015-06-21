@@ -44,7 +44,8 @@ class	Game
 		void	render(void) const;
 		void	printInfo(void) const;
 		void	gameOver(void) const ;
-		void	background(void) const ;
+		void	createBackground(void) ;
+		void	drawBackground(void) const ;
 
 
 	private:
@@ -65,6 +66,7 @@ class	Game
 		Enemy			*_enemy[MAX_ENEMY];
 		Missile			*_mEnemy[MAX_MISSIL_ENEMY];
 		Missile			*_mPlayer[MAX_MISSIL_PLAYER];
+		char 			_bg[100][100];
 
 
 };

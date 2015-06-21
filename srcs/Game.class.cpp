@@ -31,6 +31,7 @@ Game::Game(void) :
 	_life(3)
 {
 
+	
 	std::srand(std::time(0));
 	for (int i = 0; i < MAX_ENEMY; i++)
 		this->_enemy[i] = 0;
@@ -41,6 +42,7 @@ Game::Game(void) :
 	}
 	std::cout << "Welcome to ft_retro !" << std::endl;
 	init_curses();
+
 	return ;
 }
 
@@ -65,6 +67,8 @@ Game::~Game(void) {
 /*------------------ Other -----------------*/
 void			Game::init_curses(void)
 {
+
+
 	initscr();
 	cbreak();
 	noecho();
@@ -201,6 +205,9 @@ void			Game::run(void) {
 	int		ch;
 	int 	time = 0;
 
+
+	this->createBackground();
+
 	while (this->_life > 0)
 	{
 		if (this->_life != 3)
@@ -268,7 +275,7 @@ void			Game::gameOver(void) const {
 
 void			Game::render(void) const {
 	clear();
-	this->background();
+	this->drawBackground();
 	for (int i = 0; i < MAX_MISSIL_PLAYER; i++)
 	{
 		if (this->_mPlayer[i]) {
@@ -298,20 +305,64 @@ void			Game::render(void) const {
 	refresh();
 }
 
-void			Game::background(void) const {
+void			Game::createBackground(void) {
 
-	attron(COLOR_PAIR(2)|A_BOLD);
-	move(LIMAX_SPACE_Y, LIMAX_SPACE_X);
-	printw("               .        o        .                           .");
-	printw("       .                .                         .           ");
-	printw("                                                             .");
-	printw(".                   .                     .                   ");
-	printw("           .                .                                .");
-	printw("       |       .                       .           .          ");
-	printw("      -O-                                                     ");
-	printw("       |       .             .                         .      ");
-	printw("                              .      .                        ");
-	attroff(COLOR_PAIR(2));
+	int x = 0;
+	int y = 0;
+
+
+	// rand = rand() % 
+	for (int i = 0; i < this->_height; i++)
+	{
+
+
+		for (int j = 0; j < this->_width; j++)
+			this->_bg[i][j] = 0;
+
+	}
+
+
+	for (int i = 0; i < 20; i++) {
+
+		x = rand() % (this->_width - 10) + 1;
+		y = rand() % (this->_height - 10) + 1;
+		this->_bg[y][x] = '.';
+	}
+	for (int i = 0; i < 6; i++) {
+
+		x = rand() % (this->_width - 10) + 1;
+		y = rand() % (this->_height - 10) + 1;
+		this->_bg[y][x] = '*';
+	}
+	for (int i = 0; i < 4; i++) {
+
+		x = rand() % (this->_width - 10) + 1;
+		y = rand() % (this->_height - 10) + 1;
+		this->_bg[y][x] = 'o';
+	}
+		// attron(COLOR_PAIR(2)|A_BOLD);
+		// move(LIMAX_SPACE_Y / i, LIMAX_SPACE_X / j);
+		// attroff(COLOR_PAIR(2));
+
+}
+void			Game::drawBackground(void) const {
+
+	// rand = rand() %
+
+	for (int i = 0; i < this->_height; i++)
+	{
+		for (int j = 0; j < this->_width; j++)
+		{
+			if (this->_bg[i][j] != 0)
+			{
+				move(i, j);
+				printw("%c", this->_bg[i][j]);
+			}
+		}
+	}
+		// attron(COLOR_PAIR(2)|A_BOLD);
+		// move(LIMAX_SPACE_Y / i, LIMAX_SPACE_X / j);
+		// attroff(COLOR_PAIR(2));
 }
 
 void			Game::printInfo(void) const {
